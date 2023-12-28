@@ -34,4 +34,27 @@ class HotelController extends Controller
 
         return new HotelResource($hotel);
     }
+
+    public function update(Request $request, Hotel $hotel)
+    {
+        $validatedData = $request->validate([
+            'name' => 'required|string|max:255',
+            'stars' => 'required|numeric|between:1,5',
+            'destination_id' => 'required|exists:destinations,id',
+        ]);
+
+        $hotel->name = $validatedData['name'];
+        $hotel->stars = $validatedData['stars'];
+        $hotel->destination_id = $validatedData['destination_id'];
+
+        $hotel->save();
+
+        return new HotelResource($hotel);
+    }
+
+    public function destroy(Hotel $hotel)
+    {
+        $hotel->delete();
+        return response()->json(['message' => 'Hotel deleted successfully']);
+    }
 }
