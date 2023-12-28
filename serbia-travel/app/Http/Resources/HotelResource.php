@@ -14,6 +14,7 @@ class HotelResource extends JsonResource
         return [
             'id'=> $this->resource->id,
             'name'=>$this->resource->name,
+            'stars'=>$this->resource->stars,
             'destination'=> $this->resource->destination
         ];
     }
