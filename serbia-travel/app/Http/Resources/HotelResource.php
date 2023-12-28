@@ -4,18 +4,17 @@ namespace App\Http\Resources;
 
 use Illuminate\Http\Resources\Json\JsonResource;
 
-class DestinationResource extends JsonResource
+class HotelResource extends JsonResource
 {
 
-    public static $wrap = 'destination';
+    public static $wrap = 'hotel';
 
     public function toArray($request)
     {
         return [
             'id'=> $this->resource->id,
             'name'=>$this->resource->name,
-            'country'=> $this->resource->country,
-            'hotel'=>$this->resource->hotel
+            'destination'=> $this->resource->destination
         ];
     }
 }
