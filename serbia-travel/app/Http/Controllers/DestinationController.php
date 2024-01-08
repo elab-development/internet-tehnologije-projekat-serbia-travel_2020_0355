@@ -32,4 +32,26 @@ class DestinationController extends Controller
 
         return new DestinationResource($destination);
     }
+
+    public function update(Request $request, Destination $destination)
+    {
+        $validatedData = $request->validate([
+            'name' => 'required|string|max:255',
+            'country_id' => 'required|exists:countries,id',
+        ]);
+
+        $destination->name = $validatedData['name'];
+        $destination->country_id = $validatedData['country_id'];
+
+        $destination->save();
+
+        return new DestinationResource($destination);
+    }
+
+    public function destroy(Destination $destination)
+    {
+        $destination->delete();
+        return response()->json(['message' => 'Destionation deleted successfully']);
+    }
+
 }
