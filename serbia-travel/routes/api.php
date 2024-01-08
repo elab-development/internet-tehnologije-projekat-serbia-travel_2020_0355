@@ -25,7 +25,9 @@ Route::group(['middleware' => ['auth:sanctum']], function () {
     Route::get('/profile', function(Request $request) {
         return auth()->user();
     });
-    Route::resource('destinations', DestinationController::class)->only(['index','store']); // dodaj exception handling kad neko pokusa da uradi bez autorizacije
+    Route::resource('destinations', DestinationController::class)->only(['store', 'update', 'destroy']);
+    Route::resource('hotels', HotelController::class)->only(['store','update', 'destroy']);
+    Route::resource('rooms', RoomController::class)->only(['store','update', 'destroy']);
 
     Route::post('/logout', [AuthController::class, 'logout']);
 });

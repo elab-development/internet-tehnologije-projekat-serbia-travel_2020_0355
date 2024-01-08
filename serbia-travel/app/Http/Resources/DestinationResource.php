@@ -15,7 +15,7 @@ class DestinationResource extends JsonResource
             'id'=> $this->resource->id,
             'name'=>$this->resource->name,
             'country'=> $this->resource->country,
-            'hotel'=>$this->resource->hotel
+            'hotels'=>$this->resource->hotels
         ];
     }
 }
