@@ -9,15 +9,13 @@ use Illuminate\Database\Eloquent\Factories\Factory;
  */
 class CountryFactory extends Factory
 {
-    /**
-     * Define the model's default state.
-     *
-     * @return array<string, mixed>
-     */
+    protected $model = Country::class;
+
     public function definition()
     {
         return [
-            //
+            'name' => $this->faker->country,
+            'country_code' => $this->faker->countryCode,
         ];
     }
 }
