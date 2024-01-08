@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
+
 use App\Http\Controllers\Controller;
 use App\Http\Resources\HotelResource;
 use App\Models\Booking;
@@ -8,28 +9,32 @@ use App\Models\Destination;
 use App\Models\Hotel;
 use App\Models\Room;
 use Illuminate\Http\Request;
+use Illuminate\Pagination\LengthAwarePaginator;
+use Illuminate\Pagination\Paginator;
 
 class HotelController extends Controller
 {
-    public function index(Request $request) {
-
+    public function index(Request $request)
+    {
         $destinationName = $request->input('destination_name');
         $startDate = $request->input('start_date');
         $endDate = $request->input('end_date');
         $numberOfBeds = $request->input('number_of_beds');
-    
+
         if (empty($destinationName) || empty($startDate) || empty($endDate) || empty($numberOfBeds)) {
             return response()->json(['message' => 'All parameters are required'], 400);
         }
-    
+
         $destination = Destination::where('name', $destinationName)->first();
-    
+
         if (!$destination) {
             return response()->json(['message' => 'Destination not found'], 404);
         }
-    
-        $hotels = Hotel::where('destination_id', $destination->id)->get();
-    
+
+        $hotelsQuery = Hotel::where('destination_id', $destination->id);
+
+        $hotels = $hotelsQuery->get();
+
         $filteredHotels = $hotels->filter(function ($hotel) use ($startDate, $endDate, $numberOfBeds) {
             $availableRooms = Room::where('hotel_id', $hotel->id)
                 ->where('number_of_beds', '=', $numberOfBeds)
@@ -38,14 +43,24 @@ class HotelController extends Controller
                         ->where('start_date', '<', $endDate);
                 })
                 ->get();
-    
+
             return $availableRooms->isNotEmpty();
         });
-    
-        return HotelResource::collection($filteredHotels);
+
+        $perPage = $request->input('per_page', 10);
+        $page = $request->input('page', 1);
+        $paginatedHotels = new LengthAwarePaginator(
+            $filteredHotels->forPage($page, $perPage),
+            $filteredHotels->count(),
+            $perPage,
+            $page
+        );
+
+        return HotelResource::collection($paginatedHotels);
     }
 
-    public function show(Hotel $hotel) {
+    public function show(Hotel $hotel)
+    {
         return new HotelResource($hotel);
     }
 
