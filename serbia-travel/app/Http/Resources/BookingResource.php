@@ -4,7 +4,7 @@ namespace App\Http\Resources;
 
 use Illuminate\Http\Resources\Json\JsonResource;
 
-class RoomResource extends JsonResource
+class BookingResource extends JsonResource
 {
 
     public static $wrap = 'hotel';
@@ -13,9 +13,9 @@ class RoomResource extends JsonResource
     {
         return [
             'id'=> $this->resource->id,
-            'start_date'=>$this->resource->name,
-            'end_date'=>$this->resource->stars,
-            'room'=> $this->resource->room
+            'start_date'=>$this->resource->start_date,
+            'end_date'=>$this->resource->end_date,
+            'room_id'=> $this->resource->room_id
         ];
     }
 }
