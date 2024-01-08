@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\CountryController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -16,5 +17,11 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
+
+Route::get('/api/countries', [CountryController::class, 'index']);
+Route::post('/api/countries', [CountryController::class, 'store']);
+
+Route::put('/api/countries/{countryId}', [CountryController::class, 'update']);
+Route::delete('/api/countries/{countryId}', [CountryController::class, 'destroy']);
 
 Route::get('/bookings/export-pdf/{hotelId}', 'App\Http\Controllers\BookingController@exportToPDF');
