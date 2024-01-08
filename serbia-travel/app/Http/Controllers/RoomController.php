@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 use App\Http\Controllers\Controller;
 use App\Http\Resources\RoomResource;
 use App\Models\Room;
+use App\Models\Hotel;
 use Illuminate\Http\Request;
 
 class RoomController extends Controller
