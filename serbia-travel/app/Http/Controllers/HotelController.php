@@ -3,13 +3,27 @@
 namespace App\Http\Controllers;
 use App\Http\Controllers\Controller;
 use App\Http\Resources\HotelResource;
+use App\Models\Destination;
 use App\Models\Hotel;
 use Illuminate\Http\Request;
 
 class HotelController extends Controller
 {
-    public function index() {
-        $hotels = Hotel::all();
+    public function index(Request $request) {
+        if ($request->has('destination_name')) {
+            $destinationName = $request->input('destination_name');
+
+            $destination = Destination::where('name', $destinationName)->first();
+
+            if ($destination) {
+                $hotels = Hotel::where('destination_id', $destination->id)->get();
+            } else {
+                return response()->json(['message' => 'Destination not found'], 404);
+            }
+        } else {
+            $hotels = Hotel::all();
+        }
+
         return HotelResource::collection($hotels);
     }
 
