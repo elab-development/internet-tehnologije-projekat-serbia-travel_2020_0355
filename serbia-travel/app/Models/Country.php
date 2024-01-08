@@ -10,7 +10,8 @@ class Country extends Model
     use HasFactory;
 
     protected $fillable = [
-        'name'
+        'name',
+        'country_code'
     ];
 
     public function destinations() {
