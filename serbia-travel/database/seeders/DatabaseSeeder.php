@@ -2,8 +2,8 @@
 
 namespace Database\Seeders;
 
-// use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use App\Models\Hotel;
+use App\Models\User;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
@@ -15,27 +15,14 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        // \App\Models\User::factory(10)->create();
+        // User::factory(10)->create();
 
+        // Hotel::factory(10)->create();
 
-        // \App\Models\User::factory()->create([
-        //     'name' => 'Test User',
-        //     'email' => 'test@example.com',
-        // ]);
+        $destinationId = 4;
 
-        // \App\Models\Country::create([
-        //     'name'=>"Serbia"
-        // ]);
-        // \App\Models\Country::create([
-        //     'name'=>"Montenegro"
-        // ]);
-        // \App\Models\Country::create([
-        //     'name'=>"Greece"
-        // ]);
-        // \App\Models\Country::create([
-        //     'name'=>"Italy"
-        // ]);
-
-        Hotel::factory(10)->create();
+        Hotel::factory(10)->create([
+            'destination_id' => $destinationId,
+        ]);
     }
 }

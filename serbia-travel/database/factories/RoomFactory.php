@@ -18,10 +18,10 @@ class RoomFactory extends Factory
     public function definition()
     {
         return [
-            'room_number' => $this->faker->numerify('###'),
-            'number_of_beds' => $this->faker->numberBetween(1, 4),
+            'room_number' => $this->faker->unique()->numberBetween(1, 100),
+            'number_of_beds' => 3,
             'hotel_id' => function () {
-                return Hotel::inRandomOrder()->first()->id;
+                return Hotel::factory()->create()->id;
             },
         ];
     }
