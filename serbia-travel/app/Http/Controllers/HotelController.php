@@ -3,28 +3,46 @@
 namespace App\Http\Controllers;
 use App\Http\Controllers\Controller;
 use App\Http\Resources\HotelResource;
+use App\Models\Booking;
 use App\Models\Destination;
 use App\Models\Hotel;
+use App\Models\Room;
 use Illuminate\Http\Request;
 
 class HotelController extends Controller
 {
     public function index(Request $request) {
-        if ($request->has('destination_name')) {
-            $destinationName = $request->input('destination_name');
 
-            $destination = Destination::where('name', $destinationName)->first();
-
-            if ($destination) {
-                $hotels = Hotel::where('destination_id', $destination->id)->get();
-            } else {
-                return response()->json(['message' => 'Destination not found'], 404);
-            }
-        } else {
-            $hotels = Hotel::all();
+        $destinationName = $request->input('destination_name');
+        $startDate = $request->input('start_date');
+        $endDate = $request->input('end_date');
+        $numberOfBeds = $request->input('number_of_beds');
+    
+        if (empty($destinationName) || empty($startDate) || empty($endDate) || empty($numberOfBeds)) {
+            return response()->json(['message' => 'All parameters are required'], 400);
         }
-
-        return HotelResource::collection($hotels);
+    
+        $destination = Destination::where('name', $destinationName)->first();
+    
+        if (!$destination) {
+            return response()->json(['message' => 'Destination not found'], 404);
+        }
+    
+        $hotels = Hotel::where('destination_id', $destination->id)->get();
+    
+        $filteredHotels = $hotels->filter(function ($hotel) use ($startDate, $endDate, $numberOfBeds) {
+            $availableRooms = Room::where('hotel_id', $hotel->id)
+                ->where('number_of_beds', '=', $numberOfBeds)
+                ->doesntHave('bookings', 'and', function ($query) use ($startDate, $endDate) {
+                    $query->where('end_date', '>', $startDate)
+                        ->where('start_date', '<', $endDate);
+                })
+                ->get();
+    
+            return $availableRooms->isNotEmpty();
+        });
+    
+        return HotelResource::collection($filteredHotels);
     }
 
     public function show(Hotel $hotel) {
