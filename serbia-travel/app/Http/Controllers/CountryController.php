@@ -30,9 +30,12 @@ class CountryController extends Controller
             'name' => 'required',
             'country_code' => 'required',
         ]);
-
-        $country->update($request->all());
-
+    
+        $country->update([
+            'name' => $request->input('name'),
+            'country_code' => $request->input('country_code'),
+        ]);
+    
         return response()->json($country, 200);
     }
 
