@@ -25,3 +25,18 @@ body {
 html {
   scroll-behavior: smooth;
 }
+
+::-webkit-scrollbar {
+  width: 0.5rem;
+  background-color: white;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: #ff715b;
+}
+
+@media screen and (min-width: 280px) and (max-width: 1080px) {
+  body {
+    margin: 0rem;
+  }
+}
