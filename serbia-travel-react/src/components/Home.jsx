@@ -1,13 +1,56 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import styled from "styled-components";
 import HeroImage from "../assets/hero.png";
 import Button from "./Button";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
-export default function Home() {
-
+import axios from "axios";
+export default function Home({ hotels }) {
   const [startDate, setStartDate] = useState(new Date());
   const [endDate, setEndDate] = useState(new Date());
+  const [holidays, setHolidays] = useState([]);
+  const [adjustedHotels, setAdjustedHotels] = useState(hotels);
+
+  useEffect(() => {
+    const fetchHolidays = async () => {
+      try {
+        const response = await axios.get(
+          "https://public-holiday.p.rapidapi.com/2024/RS",
+          {
+            headers: {
+              "X-RapidAPI-Key":
+                "8ce8b25bfcmsh8fc7f0c21fcfd4ep15bf78jsnaf35ab89190b",
+              "X-RapidAPI-Host": "public-holiday.p.rapidapi.com",
+            },
+          }
+        );
+        setHolidays(response.data);
+      } catch (error) {
+        console.error(error);
+      }
+    };
+
+    fetchHolidays();
+  }, []);
+
+  useEffect(() => {
+    adjustHotelPrices();
+  }, [holidays, startDate, endDate]);
+
+  const adjustHotelPrices = () => {
+    const newHotels = [...hotels];
+    for (let i = 0; i < holidays.length; i++) {
+      const holidayDate = new Date(holidays[i].date);
+
+      if (startDate <= holidayDate && endDate >= holidayDate) {
+        newHotels.forEach((hotel) => {
+          hotel.price *= 0.9;
+        });
+        break;
+      }
+    }
+    setAdjustedHotels(newHotels);
+  };
 
   return (
     <Section>
@@ -25,30 +68,36 @@ export default function Home() {
             <div className="row">
               <label>Destinations</label>
               <select>
-              <option>Belgrade, Serbia</option>
-              <option>Tokyo, Japan</option>
-              <option>Paris, France</option>
-              <option>London, UK</option>
-              <option>Sydney, Australia</option>
-              <option>Rome, Italy</option>
-              <option>Cairo, Egypt</option>
-              <option>Moscow, Russia</option>
-              <option>Beijing, China</option>
-              <option>Berlin, Germany</option>
-              <option>Rio de Janeiro, Brazil</option>
+                <option>Belgrade, Serbia</option>
+                <option>Tokyo, Japan</option>
+                <option>Paris, France</option>
+                <option>London, UK</option>
+                <option>Sydney, Australia</option>
+                <option>Rome, Italy</option>
+                <option>Cairo, Egypt</option>
+                <option>Moscow, Russia</option>
+                <option>Beijing, China</option>
+                <option>Berlin, Germany</option>
+                <option>Rio de Janeiro, Brazil</option>
               </select>
             </div>
-            <div className="row"> 
-            {/* proba za ovaj use state mislim da je nepotreban ovde  */}
+            <div className="row">
+              {/* proba za ovaj use state mislim da je nepotreban ovde  */}
               <label>Check In</label>
-              <DatePicker selected={startDate} onChange={date => setStartDate(date)} />
+              <DatePicker
+                selected={startDate}
+                onChange={(date) => setStartDate(date)}
+              />
             </div>
             <div className="row">
               <label>Check Out</label>
-              <DatePicker selected={endDate} onChange={date => setEndDate(date)} />
+              <DatePicker
+                selected={endDate}
+                onChange={(date) => setEndDate(date)}
+              />
             </div>
             <div className="row">
-              <Button to="/hotels" text="Search Hotels" />
+              <Button to="/hotels" text="Search Hotels" data={hotels} />
             </div>
           </form>
         </div>
