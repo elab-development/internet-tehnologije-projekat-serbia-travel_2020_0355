@@ -1,7 +1,19 @@
 import React from "react";
 import styled from "styled-components";
-export default function Button({ text }) {
-  return <Btn>{text}</Btn>;
+import { useNavigate } from "react-router-dom";
+
+export default function Button({ text, to, onClick }) {
+  const navigate = useNavigate();
+
+  const handleClick = () => {
+    if (to) {
+      navigate(to);
+    } else if (onClick) {
+      onClick();
+    }
+  };
+
+  return <Btn onClick={handleClick}>{text}</Btn>;
 }
 
 const Btn = styled.button`
