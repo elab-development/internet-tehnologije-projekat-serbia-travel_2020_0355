@@ -12,7 +12,7 @@ export default function Navbar() {
   return (
     <Container state={isNavOpen ? 1 : 0}>
       <div className="brand">
-        <img src={Logo} alt="logo" />
+        <img onClick={() => navigate("/")} src={Logo} alt="logo" />
       </div>
       <div className="toggle">
         {isNavOpen ? (
@@ -29,19 +29,30 @@ export default function Navbar() {
       <div className={`links ${isNavOpen ? "show" : ""}`}>
         <ul>
           <li>
-            <a href="#services">Services</a>
+            <a onClick={() => navigate("/")} href="#services">
+              Services
+            </a>
           </li>
           <li>
-            <a href="#destination"> Destination</a>
+            <a onClick={() => navigate("/")} href="#destination">
+              {" "}
+              Destination
+            </a>
           </li>
           <li>
-            <a href="#offer">Offer</a>
+            <a onClick={() => navigate("/")} href="#offer">
+              Offer
+            </a>
           </li>
           <li>
-            <a href="#tour">Tour</a>
+            <a onClick={() => navigate("/")} href="#tour">
+              Tour
+            </a>
           </li>
           <li>
-            <a href="#blog">Customers</a>
+            <a onClick={() => navigate("/")} href="#blog">
+              Customers
+            </a>
           </li>
           <li className="download">
             <a onClick={() => navigate("/download")}>Download App</a>
