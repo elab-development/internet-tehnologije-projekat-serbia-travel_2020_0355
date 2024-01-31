@@ -1,13 +1,29 @@
-import "./App.css";
-import Navbar from "./components/Navbar";
+import React from "react";
+import Destinations from "./components/Destinations";
+import DownloadApp from "./components/DownloadApp";
+import Footer from "./components/Footer";
 import Home from "./components/Home";
+import Navbar from "./components/Navbar";
+import Offer from "./components/Offer";
+import ScrollToTop from "./components/ScrollToTop";
+import Services from "./components/Services";
+import Testimonial from "./components/Testimonial";
+import Tours from "./components/Tours";
+import "./App.css";
 
-function App() {
+export default function App() {
   return (
-    <div className="App">
+    <div>
+      <ScrollToTop />
       <Navbar />
+      <Home />
+      <Services />
+      <Destinations />
+      <Offer />
+      <Tours />
+      <Testimonial />
+      <DownloadApp />
+      <Footer />
     </div>
   );
 }
-
-export default App;
