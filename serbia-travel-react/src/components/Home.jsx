@@ -48,7 +48,7 @@ export default function Home() {
               <DatePicker selected={endDate} onChange={date => setEndDate(date)} />
             </div>
             <div className="row">
-              <Button text="Search Hotels" />
+              <Button to="/hotels" text="Search Hotels" />
             </div>
           </form>
         </div>

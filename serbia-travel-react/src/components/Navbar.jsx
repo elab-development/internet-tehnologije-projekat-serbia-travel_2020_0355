@@ -27,7 +27,7 @@ export default function Navbar() {
       <div className={`links ${isNavOpen ? "show" : ""}`}>
         <ul>
           <li>
-            <a href="#services">Home</a>
+            <a href="#services">Services</a>
           </li>
           <li>
             <a href="#destination"> Destination</a>
