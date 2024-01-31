@@ -41,6 +41,7 @@ const CardContainer = styled.div`
   grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
   gap: 20px;
   justify-items: center;
+  margin-bottom: 20px;
 
   @media screen and (min-width: 768px) {
     grid-template-columns: repeat(2, 1fr);

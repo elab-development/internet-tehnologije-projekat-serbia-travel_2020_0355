@@ -50,6 +50,7 @@ const StyledCard = styled.div`
     padding: 1rem;
     width: 100%;
     box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+    transform: translateY(-40%);
     button {
       padding: 0.5rem 0.7rem;
       background-color: var(--primary-color);
