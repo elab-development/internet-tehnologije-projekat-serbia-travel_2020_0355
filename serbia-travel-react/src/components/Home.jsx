@@ -97,7 +97,7 @@ export default function Home({ hotels }) {
               />
             </div>
             <div className="row">
-              <Button to="/hotels" text="Search Hotels" data={hotels} />
+              <Button to="/hotels" text="Search Hotels" data={adjustedHotels} />
             </div>
           </form>
         </div>
