@@ -5,11 +5,12 @@ import Button from "./Button";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import axios from "axios";
+
 export default function Home({ hotels }) {
   const [startDate, setStartDate] = useState(new Date());
   const [endDate, setEndDate] = useState(new Date());
-  const [holidays, setHolidays] = useState([]);
   const [adjustedHotels, setAdjustedHotels] = useState(hotels);
+  const [holidays, setHolidays] = useState(false);
 
   useEffect(() => {
     const fetchHolidays = async () => {
@@ -82,7 +83,6 @@ export default function Home({ hotels }) {
               </select>
             </div>
             <div className="row">
-              {/* proba za ovaj use state mislim da je nepotreban ovde  */}
               <label>Check In</label>
               <DatePicker
                 selected={startDate}

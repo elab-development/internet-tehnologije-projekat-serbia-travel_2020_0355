@@ -32,7 +32,7 @@ const HotelCards = ({ hotels }) => {
 };
 
 const HotelCardsContainer = styled.div`
-  margin-top: 50px;
+  margin-top: 80px;
   margin-bottom: 60px;
 `;
 
