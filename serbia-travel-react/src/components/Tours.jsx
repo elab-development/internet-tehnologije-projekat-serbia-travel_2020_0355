@@ -78,7 +78,8 @@ const Section = styled.section`
     }
     .tours {
       flex-direction: column;
-      gap: 5rem;
+      gap: 2rem;
+      align-items: center;
     }
   }
 `;
