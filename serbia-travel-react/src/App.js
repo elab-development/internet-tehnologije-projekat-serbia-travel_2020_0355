@@ -1,6 +1,5 @@
 import React from "react";
 import Destinations from "./components/Destinations";
-import DownloadApp from "./components/DownloadApp";
 import Footer from "./components/Footer";
 import Home from "./components/Home";
 import Navbar from "./components/Navbar";
@@ -22,7 +21,6 @@ export default function App() {
       <Offer />
       <Tours />
       <Testimonial />
-      <DownloadApp />
       <Footer />
     </div>
   );

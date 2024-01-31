@@ -1,10 +1,12 @@
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 import { GiHamburgerMenu } from "react-icons/gi";
 import { MdClose } from "react-icons/md";
 import Logo from "../assets/logo.png";
 export default function Navbar() {
   const [isNavOpen, setIsNavOpen] = useState(false);
+  const navigate = useNavigate();
   const html = document.querySelector("html");
   html.addEventListener("click", (e) => setIsNavOpen(false));
   return (
@@ -41,8 +43,8 @@ export default function Navbar() {
           <li>
             <a href="#blog">Customers</a>
           </li>
-          <li className="contact">
-            <a href="#contact">Contact</a>
+          <li className="download">
+            <a onClick={() => navigate("/download")}>Download App</a>
           </li>
         </ul>
       </div>
