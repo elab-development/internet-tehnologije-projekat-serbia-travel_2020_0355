@@ -3,53 +3,42 @@ import styled from "styled-components";
 import HeroImage from "../assets/hero.png";
 import Button from "./Button";
 import DatePicker from "react-datepicker";
+import useFetch from "./useFetch";
 import "react-datepicker/dist/react-datepicker.css";
-import axios from "axios";
 
 export default function Home({ hotels }) {
   const [startDate, setStartDate] = useState(new Date());
   const [endDate, setEndDate] = useState(new Date());
   const [adjustedHotels, setAdjustedHotels] = useState(hotels);
-  const [holidays, setHolidays] = useState(false);
+  const { data: holidays, loading, error } = useFetch(
+    "https://public-holiday.p.rapidapi.com/2024/RS",
+    {
+      headers: {
+        "X-RapidAPI-Key":
+          "8ce8b25bfcmsh8fc7f0c21fcfd4ep15bf78jsnaf35ab89190b",
+        "X-RapidAPI-Host": "public-holiday.p.rapidapi.com",
+      },
+    }
+  );
 
   useEffect(() => {
-    const fetchHolidays = async () => {
-      try {
-        const response = await axios.get(
-          "https://public-holiday.p.rapidapi.com/2024/RS",
-          {
-            headers: {
-              "X-RapidAPI-Key":
-                "8ce8b25bfcmsh8fc7f0c21fcfd4ep15bf78jsnaf35ab89190b",
-              "X-RapidAPI-Host": "public-holiday.p.rapidapi.com",
-            },
-          }
-        );
-        setHolidays(response.data);
-      } catch (error) {
-        console.error(error);
-      }
-    };
-
-    fetchHolidays();
-  }, []);
-
-  useEffect(() => {
-    adjustHotelPrices();
-  }, [holidays, startDate, endDate]);
+    if (!loading && !error && holidays) {
+      adjustHotelPrices();
+    }
+  }, [loading, error, holidays, startDate, endDate]);
 
   const adjustHotelPrices = () => {
-    const newHotels = [...hotels];
-    for (let i = 0; i < holidays.length; i++) {
-      const holidayDate = new Date(holidays[i].date);
-
-      if (startDate <= holidayDate && endDate >= holidayDate) {
-        newHotels.forEach((hotel) => {
-          hotel.price *= 0.9;
-        });
-        break;
+    const newHotels = hotels.map((hotel) => {
+      let updatedPrice = hotel.price;
+      for (let i = 0; i < holidays.length; i++) {
+        const holidayDate = new Date(holidays[i].date);
+        if (startDate <= holidayDate && endDate >= holidayDate) {
+          updatedPrice *= 0.9;
+          break;
+        }
       }
-    }
+      return { ...hotel, price: updatedPrice };
+    });
     setAdjustedHotels(newHotels);
   };
 
