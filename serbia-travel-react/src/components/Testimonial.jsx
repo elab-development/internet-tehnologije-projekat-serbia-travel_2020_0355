@@ -20,16 +20,17 @@ export default function Testimonial() {
               <img src={avatar} alt="avatar" />
             </div>
             <div className="info">
-              <h3>Kishan Sheth</h3>
+              <h3>Marko Marković</h3>
               <span>Full Stack Developer</span>
             </div>
           </div>
           <p className="desrciption">
-            Jetrips Hotel is an excellent choice for anybody for considering
-            hosting their events there. Top level facilities and excellent staff
-            make for a briallant environment within which to operate. The hotel
-            is meticulous in its planning.
-          </p>
+          Choosing SerbiaTravel for my travel agency was an exceptional decision. 
+          From the moment I engaged with their team, I was met with professionalism and warmth. 
+          Their top-notch facilities and attentive staff created an unparalleled environment for our gathering. 
+          The attention to detail exhibited by SerbiaTravel truly set them apart – every aspect of our event was meticulously planned, 
+          leaving nothing to chance.
+          </p> 
         </div>
         <div className="testimonial-image-two">
           <img src={testimonial2} alt="testimonials" />
