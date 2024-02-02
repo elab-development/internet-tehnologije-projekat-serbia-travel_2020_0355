@@ -25,7 +25,7 @@ export default function Home({ hotels }) {
     if (!loading && !error && holidays) {
       adjustHotelPrices();
     }
-  }, [loading, error, holidays, startDate, endDate]);
+  }, [loading, error, holidays]);
 
   const adjustHotelPrices = () => {
     const newHotels = hotels.map((hotel) => {

@@ -45,8 +45,13 @@ export default function Destinations() {
   const [destinations, setDestinations] = useState(getDestinations());
 
   const handleRegionChange = (region) => {
-    setSelectedRegion(region);
-    setDestinations([]);
+    if(region !== selectedRegion) {
+      setSelectedRegion(region);
+      setDestinations([]);
+    }
+    else {
+      setSelectedRegion(region);
+    }
   };
 
   useEffect(() => {

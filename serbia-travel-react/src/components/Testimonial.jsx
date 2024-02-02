@@ -28,8 +28,6 @@ export default function Testimonial() {
           Choosing SerbiaTravel for my travel agency was an exceptional decision. 
           From the moment I engaged with their team, I was met with professionalism and warmth. 
           Their top-notch facilities and attentive staff created an unparalleled environment for our gathering. 
-          The attention to detail exhibited by SerbiaTravel truly set them apart – every aspect of our event was meticulously planned, 
-          leaving nothing to chance.
           </p> 
         </div>
         <div className="testimonial-image-two">
