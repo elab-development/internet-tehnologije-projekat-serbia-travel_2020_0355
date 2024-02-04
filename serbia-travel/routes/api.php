@@ -22,12 +22,12 @@ Route::post('/register', [AuthController::class, 'register']);
 Route::post('/login', [AuthController::class, 'login']);
 
 Route::group(['middleware' => ['auth:sanctum']], function () {
-    Route::get('/profile', function(Request $request) {
+    Route::get('/profile', function (Request $request) {
         return auth()->user();
     });
     Route::resource('destinations', DestinationController::class)->only(['store', 'update', 'destroy']);
-    Route::resource('hotels', HotelController::class)->only(['store','update', 'destroy']);
-    Route::resource('rooms', RoomController::class)->only(['store','update', 'destroy']);
+    Route::resource('hotels', HotelController::class)->only(['store', 'update', 'destroy']);
+    Route::resource('rooms', RoomController::class)->only(['store', 'update', 'destroy']);
 
     Route::post('/logout', [AuthController::class, 'logout']);
 });
