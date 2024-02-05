@@ -4,12 +4,14 @@ import HeroImage from "../assets/hero.png";
 import Button from "./Button";
 import DatePicker from "react-datepicker";
 import useFetch from "./useFetch";
+import axios from "axios";
 import "react-datepicker/dist/react-datepicker.css";
 
 export default function Home({ hotels }) {
   const [startDate, setStartDate] = useState(new Date());
   const [endDate, setEndDate] = useState(new Date());
   const [adjustedHotels, setAdjustedHotels] = useState(hotels);
+  const [destinations, setDestinations] = useState([]);
   const { data: holidays, loading, error } = useFetch(
     "https://public-holiday.p.rapidapi.com/2024/RS",
     {
@@ -20,6 +22,18 @@ export default function Home({ hotels }) {
       },
     }
   );
+
+  useEffect(() => {
+    const fetchDestinations = async () => {
+      try {
+        const response = await axios.get("http://localhost:8000/api/destinations");
+        setDestinations(response.data.data);
+      } catch (error) {
+        console.log("Error fetching destinations", error);
+      }
+    };
+    fetchDestinations();
+  }, []);
 
   useEffect(() => {
     if (!loading && !error && holidays) {
@@ -58,17 +72,9 @@ export default function Home({ hotels }) {
             <div className="row">
               <label>Destinations</label>
               <select>
-                <option>Belgrade, Serbia</option>
-                <option>Tokyo, Japan</option>
-                <option>Paris, France</option>
-                <option>London, UK</option>
-                <option>Sydney, Australia</option>
-                <option>Rome, Italy</option>
-                <option>Cairo, Egypt</option>
-                <option>Moscow, Russia</option>
-                <option>Beijing, China</option>
-                <option>Berlin, Germany</option>
-                <option>Rio de Janeiro, Brazil</option>
+                {destinations && Array.isArray(destinations) && destinations.map((destination) => {
+                  return <option value={destination.id}>{destination.name}</option>
+                })}
               </select>
             </div>
             <div className="row">
