@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from "react";
-import { useParams, useNavigate  } from "react-router-dom";
 import { useLocation } from "react-router-dom";
 import Navbar from "./Navbar";
 import styled from "styled-components";

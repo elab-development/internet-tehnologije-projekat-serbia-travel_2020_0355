@@ -23,8 +23,8 @@ const HotelCards = ({ formParams }) => {
         const response = await axios.get(`http://localhost:8000/api/hotels`, {
           params: {
             destination_name: destination,
-            start_date: '2024-01-31',
-            end_date: '2024-02-01',
+            start_date: formParams.startDate,
+            end_date: formParams.endDate,
             number_of_beds: numberOfBeds,
             page: pageNumber,
             per_page: hotelsPerPage
