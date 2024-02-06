@@ -7,6 +7,7 @@ import tour1 from "../assets/tour1.png";
 const HotelCards = ({ formParams }) => {
   const hotelsPerPage = 6;
   const destination = formParams.destination;
+  const numberOfBeds = formParams.numberOfBeds;
   const [hotels, setHotels] = useState(null);
   const [pageNumber, setPageNumber] = useState(1);
 
@@ -24,7 +25,7 @@ const HotelCards = ({ formParams }) => {
             destination_name: destination,
             start_date: '2024-01-31',
             end_date: '2024-02-01',
-            number_of_beds: 3,
+            number_of_beds: numberOfBeds,
             page: pageNumber,
             per_page: hotelsPerPage
           }

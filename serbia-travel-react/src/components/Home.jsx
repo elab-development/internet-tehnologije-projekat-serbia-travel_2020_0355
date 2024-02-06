@@ -13,6 +13,7 @@ export default function Home() {
   const [endDate, setEndDate] = useState(new Date());
   const [destination, setDestination] = useState("");
   const [destinations, setDestinations] = useState([]);
+  const [numberOfBeds, setNumberOfBeds] = useState("");
   const { data: holidays, loading, error } = useFetch(
     "https://public-holiday.p.rapidapi.com/2024/RS",
     {
@@ -60,7 +61,7 @@ export default function Home() {
   // };
 
   const handleSearchHotels = () => {
-    navigate("/hotels", { state: { data: { startDate, endDate, destination } } });
+    navigate("/hotels", { state: { data: { startDate, endDate, destination, numberOfBeds } } });
   };
 
   return (
@@ -98,6 +99,17 @@ export default function Home() {
                 selected={endDate}
                 onChange={(date) => setEndDate(date)}
               />
+            </div>
+            <div className="row">
+              <label>Number of Beds</label>
+              <select value={numberOfBeds} onChange={(e) => setNumberOfBeds(e.target.value)}>
+                <option value="">Select Number of Beds</option>
+                <option value="1">1 Bed</option>
+                <option value="2">2 Beds</option>
+                <option value="3">3 Beds</option>
+                <option value="4">4 Beds</option>
+                <option value="5">5 Beds</option>
+              </select>
             </div>
             <div className="row">
               <Button onClick={handleSearchHotels} text="Search Hotels"/>

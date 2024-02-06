@@ -4,6 +4,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Hotels from "./components/Hotels";
 import App from "./App";
 import Download from "./components/Download";
+import HotelCards from "./components/HotelCards";
 
 export default function Router() {
   return (
