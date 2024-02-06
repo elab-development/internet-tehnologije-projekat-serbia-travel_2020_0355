@@ -5,12 +5,13 @@ import Button from "./Button";
 import DatePicker from "react-datepicker";
 import useFetch from "./useFetch";
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
 import "react-datepicker/dist/react-datepicker.css";
 
-export default function Home({ hotels }) {
+export default function Home() {
   const [startDate, setStartDate] = useState(new Date());
   const [endDate, setEndDate] = useState(new Date());
-  const [adjustedHotels, setAdjustedHotels] = useState(hotels);
+  const [destination, setDestination] = useState("");
   const [destinations, setDestinations] = useState([]);
   const { data: holidays, loading, error } = useFetch(
     "https://public-holiday.p.rapidapi.com/2024/RS",
@@ -22,6 +23,8 @@ export default function Home({ hotels }) {
       },
     }
   );
+
+  const navigate = useNavigate(); 
 
   useEffect(() => {
     const fetchDestinations = async () => {
@@ -35,25 +38,29 @@ export default function Home({ hotels }) {
     fetchDestinations();
   }, []);
 
-  useEffect(() => {
-    if (!loading && !error && holidays) {
-      adjustHotelPrices();
-    }
-  }, [loading, error, holidays]);
+  // useEffect(() => {
+  //   if (!loading && !error && holidays) {
+  //     adjustHotelPrices();
+  //   }
+  // }, [loading, error, holidays]);
 
-  const adjustHotelPrices = () => {
-    const newHotels = hotels.map((hotel) => {
-      let updatedPrice = hotel.price;
-      for (let i = 0; i < holidays.length; i++) {
-        const holidayDate = new Date(holidays[i].date);
-        if (startDate <= holidayDate && endDate >= holidayDate) {
-          updatedPrice *= 0.9;
-          break;
-        }
-      }
-      return { ...hotel, price: updatedPrice };
-    });
-    setAdjustedHotels(newHotels);
+  // const adjustHotelPrices = () => {
+  //   const newHotels = hotels.map((hotel) => {
+  //     let updatedPrice = hotel.price;
+  //     for (let i = 0; i < holidays.length; i++) {
+  //       const holidayDate = new Date(holidays[i].date);
+  //       if (startDate <= holidayDate && endDate >= holidayDate) {
+  //         updatedPrice *= 0.9;
+  //         break;
+  //       }
+  //     }
+  //     return { ...hotel, price: updatedPrice };
+  //   });
+  //   setAdjustedHotels(newHotels);
+  // };
+
+  const handleSearchHotels = () => {
+    navigate("/hotels", { state: { data: { startDate, endDate, destination } } });
   };
 
   return (
@@ -71,9 +78,10 @@ export default function Home({ hotels }) {
           <form>
             <div className="row">
               <label>Destinations</label>
-              <select>
+              <select onChange={(e) => setDestination(e.target.value)}>
+                <option value="">Select Destination</option>
                 {destinations && Array.isArray(destinations) && destinations.map((destination) => {
-                  return <option value={destination.id}>{destination.name}</option>
+                  return <option key={destination.id} value={destination.name}>{destination.name}</option>
                 })}
               </select>
             </div>
@@ -92,7 +100,7 @@ export default function Home({ hotels }) {
               />
             </div>
             <div className="row">
-              <Button to="/hotels" text="Search Hotels" data={adjustedHotels} />
+              <Button onClick={handleSearchHotels} text="Search Hotels"/>
             </div>
           </form>
         </div>

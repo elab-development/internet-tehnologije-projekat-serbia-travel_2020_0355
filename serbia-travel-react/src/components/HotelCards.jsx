@@ -1,32 +1,44 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import styled from "styled-components";
 import Card from "./Card";
+import axios from "axios";
+import tour1 from "../assets/tour1.png";
 
-const HotelCards = ({ hotels }) => {
-  const [currentPage, setCurrentPage] = useState(1);
+const HotelCards = ({ formParams }) => {
   const hotelsPerPage = 6;
-  const indexOfLastHotel = currentPage * hotelsPerPage;
-  const indexOfFirstHotel = indexOfLastHotel - hotelsPerPage;
-  const currentHotels = hotels.slice(indexOfFirstHotel, indexOfLastHotel);
+  const destination = formParams.destination;
+  const [hotels, setHotels] = useState(null);
 
-  const paginate = (pageNumber) => setCurrentPage(pageNumber);
+  useEffect(() => {
+    if(!destination) return;
+    const fetchHotels = async () => {
+      try {
+        const response = await axios.get(`http://localhost:8000/api/hotels`, {
+          params: {
+            destination_name: destination,
+            start_date: '2024-01-31',
+            end_date: '2024-02-01',
+            number_of_beds: 3,
+            page: 1,
+            per_page: hotelsPerPage
+          }
+        });
+        setHotels(response.data.data);
+      } catch (error) {
+        console.log("Error fetching hotels", error);
+      }
+    }
+    fetchHotels();
+  }, [destination]);
+
 
   return (
     <HotelCardsContainer>
       <CardContainer>
-        {currentHotels.map((hotel, index) => (
-          <Card key={index} {...hotel} index={index} />
+        {hotels && hotels.map((hotel) => (
+          <Card key={hotel.id} image={tour1} title={hotel.name} price={200} reviews={"7k"} index={hotel.id} />
         ))}
       </CardContainer>
-      <Pagination>
-        {Array.from({ length: Math.ceil(hotels.length / hotelsPerPage) }).map(
-          (_, index) => (
-            <PageNumber key={index} onClick={() => paginate(index + 1)}>
-              {index + 1}
-            </PageNumber>
-          )
-        )}
-      </Pagination>
     </HotelCardsContainer>
   );
 };
