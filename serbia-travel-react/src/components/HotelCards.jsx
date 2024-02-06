@@ -8,6 +8,12 @@ const HotelCards = ({ formParams }) => {
   const hotelsPerPage = 6;
   const destination = formParams.destination;
   const [hotels, setHotels] = useState(null);
+  const [pageNumber, setPageNumber] = useState(1);
+
+  const changePageNumber = (page) => {
+    if(page+pageNumber==0) return;
+    setPageNumber(page);
+  }
 
   useEffect(() => {
     if(!destination) return;
@@ -19,7 +25,7 @@ const HotelCards = ({ formParams }) => {
             start_date: '2024-01-31',
             end_date: '2024-02-01',
             number_of_beds: 3,
-            page: 1,
+            page: pageNumber,
             per_page: hotelsPerPage
           }
         });
@@ -29,7 +35,7 @@ const HotelCards = ({ formParams }) => {
       }
     }
     fetchHotels();
-  }, [destination]);
+  }, [destination, pageNumber]);
 
 
   return (
@@ -39,6 +45,8 @@ const HotelCards = ({ formParams }) => {
           <Card key={hotel.id} image={tour1} title={hotel.name} price={200} reviews={"7k"} index={hotel.id} />
         ))}
       </CardContainer>
+      <button onClick={() => changePageNumber(pageNumber+1)}>+1</button>
+      <button onClick={() => changePageNumber(pageNumber-1)}>-1</button>
     </HotelCardsContainer>
   );
 };
