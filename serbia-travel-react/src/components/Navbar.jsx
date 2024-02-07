@@ -57,6 +57,9 @@ export default function Navbar() {
           <li className="download">
             <a onClick={() => navigate("/download")}>Download App</a>
           </li>
+          <li>
+            <a onClick={() => navigate("/login")}>Login</a>
+          </li>
         </ul>
       </div>
     </Container>

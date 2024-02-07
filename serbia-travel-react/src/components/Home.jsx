@@ -14,23 +14,25 @@ export default function Home() {
   const [destination, setDestination] = useState("");
   const [destinations, setDestinations] = useState([]);
   const [numberOfBeds, setNumberOfBeds] = useState("");
-  const { data: holidays, loading, error } = useFetch(
-    "https://public-holiday.p.rapidapi.com/2024/RS",
-    {
-      headers: {
-        "X-RapidAPI-Key":
-          "8ce8b25bfcmsh8fc7f0c21fcfd4ep15bf78jsnaf35ab89190b",
-        "X-RapidAPI-Host": "public-holiday.p.rapidapi.com",
-      },
-    }
-  );
+  const {
+    data: holidays,
+    loading,
+    error,
+  } = useFetch("https://public-holiday.p.rapidapi.com/2024/RS", {
+    headers: {
+      "X-RapidAPI-Key": "8ce8b25bfcmsh8fc7f0c21fcfd4ep15bf78jsnaf35ab89190b",
+      "X-RapidAPI-Host": "public-holiday.p.rapidapi.com",
+    },
+  });
 
-  const navigate = useNavigate(); 
+  const navigate = useNavigate();
 
   useEffect(() => {
     const fetchDestinations = async () => {
       try {
-        const response = await axios.get("http://localhost:8000/api/destinations");
+        const response = await axios.get(
+          "http://localhost:8000/api/destinations"
+        );
         setDestinations(response.data.data);
       } catch (error) {
         console.log("Error fetching destinations", error);
@@ -61,7 +63,9 @@ export default function Home() {
   // };
 
   const handleSearchHotels = () => {
-    navigate("/hotels", { state: { data: { startDate, endDate, destination, numberOfBeds } } });
+    navigate("/hotels", {
+      state: { data: { startDate, endDate, destination, numberOfBeds } },
+    });
   };
 
   return (
@@ -81,9 +85,15 @@ export default function Home() {
               <label>Destinations</label>
               <select onChange={(e) => setDestination(e.target.value)}>
                 <option value="">Select Destination</option>
-                {destinations && Array.isArray(destinations) && destinations.map((destination) => {
-                  return <option key={destination.id} value={destination.name}>{destination.name}</option>
-                })}
+                {destinations &&
+                  Array.isArray(destinations) &&
+                  destinations.map((destination) => {
+                    return (
+                      <option key={destination.id} value={destination.name}>
+                        {destination.name}
+                      </option>
+                    );
+                  })}
               </select>
             </div>
             <div className="row">
@@ -102,7 +112,10 @@ export default function Home() {
             </div>
             <div className="row">
               <label>Number of Beds</label>
-              <select value={numberOfBeds} onChange={(e) => setNumberOfBeds(e.target.value)}>
+              <select
+                value={numberOfBeds}
+                onChange={(e) => setNumberOfBeds(e.target.value)}
+              >
                 <option value="">Select Number of Beds</option>
                 <option value="1">1 Bed</option>
                 <option value="2">2 Beds</option>
@@ -112,7 +125,7 @@ export default function Home() {
               </select>
             </div>
             <div className="row">
-              <Button onClick={handleSearchHotels} text="Search Hotels"/>
+              <Button onClick={handleSearchHotels} text="Search Hotels" />
             </div>
           </form>
         </div>
