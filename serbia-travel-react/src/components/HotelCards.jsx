@@ -4,6 +4,7 @@ import Card from "./Card";
 import axios from "axios";
 import tour1 from "../assets/tour1.png";
 import HotelModal from "./HotelModal";
+import useFetch from "./useFetch";
 
 const HotelCards = ({ formParams }) => {
   const hotelsPerPage = 6;
@@ -16,6 +17,17 @@ const HotelCards = ({ formParams }) => {
   const [filter, setFilter] = useState("all");
   const [selectedHotel, setSelectedHotel] = useState(null);
   const [rooms, setRooms] = useState([]);
+  const [adjustedRooms, setAdjustedRooms] = useState([]);
+  const {
+    data: holidays,
+    loading,
+    error,
+  } = useFetch("https://public-holiday.p.rapidapi.com/2024/RS", {
+    headers: {
+      "X-RapidAPI-Key": "8ce8b25bfcmsh8fc7f0c21fcfd4ep15bf78jsnaf35ab89190b",
+      "X-RapidAPI-Host": "public-holiday.p.rapidapi.com",
+    },
+  });
 
   const changePageNumber = (page) => {
     setPageNumber(page);
@@ -50,13 +62,25 @@ const HotelCards = ({ formParams }) => {
 
   const handleCardClick = async (hotel) => {
     setSelectedHotel(hotel);
-    await axios.get(`http://localhost:8000/api/hotels/${hotel.id}`)
-    .then((response) => {
-      setRooms(response.data.hotel.rooms);
-    })
-    .catch((error) => {
+    try {
+      const response = await axios.get(`http://localhost:8000/api/hotels/${hotel.id}`);
+      const hotelRooms = response.data.hotel.rooms;
+      const adjustedHotelRooms = hotelRooms.map((room) => {
+        let updatedPrice = room.price;
+        for (let i = 0; i < holidays.length; i++) {
+          const holidayDate = new Date(holidays[i].date);
+          if (startDate <= holidayDate && endDate >= holidayDate) {
+            updatedPrice *= 0.9;
+            updatedPrice = parseFloat(updatedPrice.toFixed(2));
+            break;
+          }
+        }
+        return { ...room, price: updatedPrice };
+      });
+      setRooms(adjustedHotelRooms);
+    } catch (error) {
       console.error("Error fetching hotel details:", error);
-    });
+    }
   };
 
   const handleCloseModal = () => {

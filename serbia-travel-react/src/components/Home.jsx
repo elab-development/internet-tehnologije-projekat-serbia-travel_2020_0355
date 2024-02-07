@@ -41,27 +41,6 @@ export default function Home() {
     fetchDestinations();
   }, []);
 
-  // useEffect(() => {
-  //   if (!loading && !error && holidays) {
-  //     adjustHotelPrices();
-  //   }
-  // }, [loading, error, holidays]);
-
-  // const adjustHotelPrices = () => {
-  //   const newHotels = hotels.map((hotel) => {
-  //     let updatedPrice = hotel.price;
-  //     for (let i = 0; i < holidays.length; i++) {
-  //       const holidayDate = new Date(holidays[i].date);
-  //       if (startDate <= holidayDate && endDate >= holidayDate) {
-  //         updatedPrice *= 0.9;
-  //         break;
-  //       }
-  //     }
-  //     return { ...hotel, price: updatedPrice };
-  //   });
-  //   setAdjustedHotels(newHotels);
-  // };
-
   const handleSearchHotels = () => {
     navigate("/hotels", {
       state: { data: { startDate, endDate, destination, numberOfBeds } },
