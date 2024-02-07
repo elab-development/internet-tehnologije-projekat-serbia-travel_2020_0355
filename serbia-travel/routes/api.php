@@ -28,6 +28,7 @@ Route::group(['middleware' => ['auth:sanctum']], function () {
     Route::resource('destinations', DestinationController::class)->only(['store', 'update', 'destroy']);
     Route::resource('hotels', HotelController::class)->only(['store', 'update', 'destroy']);
     Route::resource('rooms', RoomController::class)->only(['store', 'update', 'destroy']);
+    Route::resource('bookings', BookingController::class)->only(['store']);
 
     Route::post('/logout', [AuthController::class, 'logout']);
 });
