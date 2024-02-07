@@ -20,6 +20,7 @@ class HotelController extends Controller
         $startDate = $request->input('start_date');
         $endDate = $request->input('end_date');
         $numberOfBeds = $request->input('number_of_beds');
+        $numberOfStars = $request->input('number_of_stars');
 
         if (empty($destinationName) || empty($startDate) || empty($endDate) || empty($numberOfBeds)) {
             return response()->json(['message' => 'All parameters are required'], 400);
@@ -32,6 +33,10 @@ class HotelController extends Controller
         }
 
         $hotelsQuery = Hotel::where('destination_id', $destination->id);
+
+        if (!empty($numberOfStars)) {
+            $hotelsQuery->where('stars', $numberOfStars);
+        }
 
         $hotels = $hotelsQuery->get();
 
