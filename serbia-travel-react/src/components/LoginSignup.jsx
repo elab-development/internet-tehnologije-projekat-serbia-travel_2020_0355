@@ -6,13 +6,44 @@ import password_icon from "../assets/password.png";
 import Logo from "../assets/logo.png";
 import Button from "./Button";
 import { useNavigate } from "react-router-dom";
+import axios from "axios";
 
 export default function LoginSignup() {
   const [action, setAction] = useState("Login");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [name, setName] = useState("");
   const navigate = useNavigate();
 
-  function login() {}
-  function signUp() {}
+  function login() {
+    const userLogin = async () => {
+      try {
+        const response = await axios.post(
+          "http://localhost:8000/api/login",
+          { email, password }
+        );
+        localStorage.setItem('token', response.data.access_token);
+      } catch (error) {
+        console.error("An error occurred during login:", error);
+      }
+    };
+    userLogin();
+  }
+
+  function signUp() {
+    const userSignUp = async () => {
+      try {
+        const response = await axios.post(
+          "http://localhost:8000/api/register",
+          { name, email, password }
+        );
+        localStorage.setItem('token', response.data.access_token);
+      } catch (error) {
+        console.error("An error occurred during login:", error);
+      }
+    };
+    userSignUp();
+  }
 
   return (
     <Container>
@@ -30,16 +61,29 @@ export default function LoginSignup() {
           ) : (
             <div className="input">
               <img src={user_icon} alt="" />
-              <input type="text" placeholder="Name" />
+              <input type="text"
+               placeholder="Name"
+              value={name}
+              onChange={(e) => setName(e.target.value)} />
             </div>
           )}
           <div className="input">
             <img src={email_icon} alt="" />
-            <input type="email" placeholder="Email" />
+            <input
+              type="email"
+              placeholder="Email"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+            />
           </div>
           <div className="input">
             <img src={password_icon} alt="" />
-            <input type="password" placeholder="Password" />
+            <input
+              type="password"
+              placeholder="Password"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+            />
           </div>
         </div>
         {action === "Sign Up" ? (
