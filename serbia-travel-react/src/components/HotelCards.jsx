@@ -10,9 +10,14 @@ const HotelCards = ({ formParams }) => {
   const numberOfBeds = formParams.numberOfBeds;
   const [hotels, setHotels] = useState(null);
   const [pageNumber, setPageNumber] = useState(1);
+  const [filter, setFilter] = useState("all");
 
   const changePageNumber = (page) => {
     setPageNumber(page);
+  };
+
+  const handleFilterChange = (e) => {
+    setFilter(e.target.value);
   };
 
   useEffect(() => {
@@ -25,6 +30,7 @@ const HotelCards = ({ formParams }) => {
             start_date: formParams.startDate,
             end_date: formParams.endDate,
             number_of_beds: numberOfBeds,
+            number_of_stars: filter !== "all" ? filter : undefined,
             page: pageNumber,
             per_page: hotelsPerPage,
           },
@@ -35,10 +41,23 @@ const HotelCards = ({ formParams }) => {
       }
     };
     fetchHotels();
-  }, [destination, pageNumber]);
+  }, [destination, filter, pageNumber]);
 
   return (
     <HotelCardsContainer>
+      <FilterContainer>
+        <label>
+          Filter by Stars:
+          <select value={filter} onChange={handleFilterChange}>
+            <option value="all">All</option>
+            <option value="5">5 Stars</option>
+            <option value="4">4 Stars</option>
+            <option value="3">3 Stars</option>
+            <option value="2">2 Stars</option>
+            <option value="1">1 Stars</option>
+          </select>
+        </label>
+      </FilterContainer>
       <CardContainer>
         {hotels &&
           hotels.map((hotel) => (
@@ -71,8 +90,9 @@ const HotelCards = ({ formParams }) => {
   );
 };
 
+
 const HotelCardsContainer = styled.div`
-  margin-top: 80px;
+  margin-top: 20px;
   margin-bottom: 60px;
 `;
 
@@ -89,6 +109,27 @@ const CardContainer = styled.div`
 
   @media screen and (min-width: 1024px) {
     grid-template-columns: repeat(3, 1fr);
+  }
+`;
+
+const FilterContainer = styled.div`
+  position: relative;
+  margin-bottom: 20px;
+  margin-top: 20px;
+
+  label {
+    position: absolute;
+    top: -60px;
+    right: 0;
+    z-index: 100;
+    margin-right: 10px;
+    margin-bottom: 20px;
+  }
+
+  select {
+    margin-left: 10px;
+    padding: 5px;
+    font-size: 16px;
   }
 `;
 

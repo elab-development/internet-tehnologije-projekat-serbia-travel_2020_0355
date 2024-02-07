@@ -12,16 +12,10 @@ export default function Hotels() {
 
   return (
     <PageContainer>
-      <Navbar />
+      <HotelNavBar>
+        <Navbar />
+      </HotelNavBar>
       <MainContent>
-        {/* <FilterContainer>
-          <label>Filter by Reviews:</label>
-          <select value={filter} onChange={handleFilterChange}>
-            <option value="all">All</option>
-            <option value="5k Reviews">5k Reviews</option>
-            <option value="7k Reviews">7k Reviews</option>
-          </select>
-        </FilterContainer> */}
         <HotelCards formParams={formParams}/>
       </MainContent>
       <Footer />
@@ -35,31 +29,10 @@ const PageContainer = styled.div`
   min-height: 100vh;
 `;
 
+const HotelNavBar = styled.div`
+  margin-bottom: 70px;
+`
+
 const MainContent = styled.div`
   flex: 1;
-`;
-
-const FilterContainer = styled.div`
-  position: relative;
-  margin-bottom: 20px;
-  margin-top: 20px;
-  label {
-    position: absolute;
-    top: 0px;
-    right: 120px;
-    left: auto;
-    z-index: 100;
-    margin-right: 10px;
-    margin-bottom: 20px;
-  }
-  select {
-    position: absolute;
-    top: 0px;
-    right: 0px;
-    left: auto;
-    z-index: 100;
-    padding: 5px;
-    font-size: 16px;
-    margin-bottom: 20px;
-  }
 `;
