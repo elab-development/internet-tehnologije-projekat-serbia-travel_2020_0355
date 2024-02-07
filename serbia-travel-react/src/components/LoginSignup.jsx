@@ -23,6 +23,7 @@ export default function LoginSignup() {
           { email, password }
         );
         localStorage.setItem('token', response.data.access_token);
+        navigate("/");
       } catch (error) {
         console.error("An error occurred during login:", error);
       }
@@ -38,6 +39,7 @@ export default function LoginSignup() {
           { name, email, password }
         );
         localStorage.setItem('token', response.data.access_token);
+        navigate("/");
       } catch (error) {
         console.error("An error occurred during login:", error);
       }

@@ -7,8 +7,15 @@ import Logo from "../assets/logo.png";
 export default function Navbar() {
   const [isNavOpen, setIsNavOpen] = useState(false);
   const navigate = useNavigate();
+  const token = localStorage.getItem("token");
   const html = document.querySelector("html");
   html.addEventListener("click", (e) => setIsNavOpen(false));
+
+  const handleLogout = () => {
+    localStorage.removeItem("token");
+    navigate("/login");
+  };
+
   return (
     <Container state={isNavOpen ? 1 : 0}>
       <div className="brand">
@@ -58,7 +65,11 @@ export default function Navbar() {
             <a onClick={() => navigate("/download")}>Download App</a>
           </li>
           <li>
-            <a onClick={() => navigate("/login")}>Login</a>
+            {token ? (
+              <a onClick={handleLogout}>Logout</a>
+            ) : (
+              <a onClick={() => navigate("/login")}>Login</a>
+            )}
           </li>
         </ul>
       </div>
