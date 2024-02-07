@@ -2,7 +2,7 @@ import React from "react";
 import styled from "styled-components";
 import { BsFillStarFill } from "react-icons/bs";
 
-const Card = ({ image, title, price, reviews, index }) => {
+const Card = ({ image, title, price, reviews, index, onClick }) => {
   return (
     <StyledCard key={title} index={index}>
       <div className="image">
@@ -25,7 +25,7 @@ const Card = ({ image, title, price, reviews, index }) => {
             </div>
           </div>
         </div>
-        <button>+</button>
+        <button onClick={onClick}>+</button>
       </div>
     </StyledCard>
   );

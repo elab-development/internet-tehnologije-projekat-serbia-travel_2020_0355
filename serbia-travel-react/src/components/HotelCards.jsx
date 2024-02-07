@@ -3,14 +3,19 @@ import styled from "styled-components";
 import Card from "./Card";
 import axios from "axios";
 import tour1 from "../assets/tour1.png";
+import HotelModal from "./HotelModal";
 
 const HotelCards = ({ formParams }) => {
   const hotelsPerPage = 6;
   const destination = formParams.destination;
   const numberOfBeds = formParams.numberOfBeds;
+  const startDate = formParams.startDate;
+  const endDate = formParams.endDate;
   const [hotels, setHotels] = useState(null);
   const [pageNumber, setPageNumber] = useState(1);
   const [filter, setFilter] = useState("all");
+  const [selectedHotel, setSelectedHotel] = useState(null);
+  const [rooms, setRooms] = useState([]);
 
   const changePageNumber = (page) => {
     setPageNumber(page);
@@ -43,8 +48,23 @@ const HotelCards = ({ formParams }) => {
     fetchHotels();
   }, [destination, filter, pageNumber]);
 
+  const handleCardClick = async (hotel) => {
+    setSelectedHotel(hotel);
+    await axios.get(`http://localhost:8000/api/hotels/${hotel.id}`)
+    .then((response) => {
+      setRooms(response.data.hotel.rooms);
+    })
+    .catch((error) => {
+      console.error("Error fetching hotel details:", error);
+    });
+  };
+
+  const handleCloseModal = () => {
+    setSelectedHotel(null);
+  };
+
   return (
-    <HotelCardsContainer>
+    <div>
       <FilterContainer>
         <label>
           Filter by Stars:
@@ -58,35 +78,47 @@ const HotelCards = ({ formParams }) => {
           </select>
         </label>
       </FilterContainer>
-      <CardContainer>
-        {hotels &&
-          hotels.map((hotel) => (
-            <Card
-              key={hotel.id}
-              image={tour1}
-              title={hotel.name}
-              price={200}
-              reviews={"7k"}
-              index={hotel.id}
-            />
-          ))}
-      </CardContainer>
-      <Pagination>
-        <PaginationButton
-          onClick={() => changePageNumber(pageNumber - 1)}
-          disabled={pageNumber === 1}
-        >
-          Prev
-        </PaginationButton>
-        <PageNumber>{pageNumber}</PageNumber>
-        <PaginationButton
-          onClick={() => changePageNumber(pageNumber + 1)}
-          disabled={!hotels || hotels.length < hotelsPerPage}
-        >
-          Next
-        </PaginationButton>
-      </Pagination>
-    </HotelCardsContainer>
+      <HotelCardsContainer>
+        <CardContainer>
+          {hotels &&
+            hotels.map((hotel) => (
+              <Card
+                key={hotel.id}
+                image={tour1}
+                title={hotel.name}
+                price={200}
+                reviews={"7k"}
+                index={hotel.id}
+                onClick={() => handleCardClick(hotel)}
+              />
+            ))}
+        </CardContainer>
+        <Pagination>
+          <PaginationButton
+            onClick={() => changePageNumber(pageNumber - 1)}
+            disabled={pageNumber === 1}
+          >
+            Prev
+          </PaginationButton>
+          <PageNumber>{pageNumber}</PageNumber>
+          <PaginationButton
+            onClick={() => changePageNumber(pageNumber + 1)}
+            disabled={!hotels || hotels.length < hotelsPerPage}
+          >
+            Next
+          </PaginationButton>
+        </Pagination>
+      </HotelCardsContainer>
+      {selectedHotel && (
+        <HotelModal
+          hotelName={selectedHotel.name}
+          startDate = {startDate}
+          endDate = {endDate}
+          rooms={rooms}
+          onClose={handleCloseModal}
+        />
+      )}
+    </div>
   );
 };
 
