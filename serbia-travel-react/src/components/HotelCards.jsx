@@ -12,12 +12,11 @@ const HotelCards = ({ formParams }) => {
   const [pageNumber, setPageNumber] = useState(1);
 
   const changePageNumber = (page) => {
-    if(page+pageNumber==0) return;
     setPageNumber(page);
-  }
+  };
 
   useEffect(() => {
-    if(!destination) return;
+    if (!destination) return;
     const fetchHotels = async () => {
       try {
         const response = await axios.get(`http://localhost:8000/api/hotels`, {
@@ -27,27 +26,47 @@ const HotelCards = ({ formParams }) => {
             end_date: formParams.endDate,
             number_of_beds: numberOfBeds,
             page: pageNumber,
-            per_page: hotelsPerPage
-          }
+            per_page: hotelsPerPage,
+          },
         });
         setHotels(response.data.data);
       } catch (error) {
         console.log("Error fetching hotels", error);
       }
-    }
+    };
     fetchHotels();
   }, [destination, pageNumber]);
-
 
   return (
     <HotelCardsContainer>
       <CardContainer>
-        {hotels && hotels.map((hotel) => (
-          <Card key={hotel.id} image={tour1} title={hotel.name} price={200} reviews={"7k"} index={hotel.id} />
-        ))}
+        {hotels &&
+          hotels.map((hotel) => (
+            <Card
+              key={hotel.id}
+              image={tour1}
+              title={hotel.name}
+              price={200}
+              reviews={"7k"}
+              index={hotel.id}
+            />
+          ))}
       </CardContainer>
-      <button onClick={() => changePageNumber(pageNumber+1)}>+1</button>
-      <button onClick={() => changePageNumber(pageNumber-1)}>-1</button>
+      <Pagination>
+        <PaginationButton
+          onClick={() => changePageNumber(pageNumber - 1)}
+          disabled={pageNumber === 1}
+        >
+          Prev
+        </PaginationButton>
+        <PageNumber>{pageNumber}</PageNumber>
+        <PaginationButton
+          onClick={() => changePageNumber(pageNumber + 1)}
+          disabled={!hotels || hotels.length < hotelsPerPage}
+        >
+          Next
+        </PaginationButton>
+      </Pagination>
     </HotelCardsContainer>
   );
 };
@@ -76,21 +95,34 @@ const CardContainer = styled.div`
 const Pagination = styled.div`
   display: flex;
   justify-content: center;
-  margin-top: 50px;
-  margin-bottom: 50px;
+  margin-top: 20px;
+`;
+
+const PaginationButton = styled.button`
+  padding: 8px 16px;
+  margin: 0 5px;
+  cursor: pointer;
+  background-color: var(--primary-color);
+  color: white;
+  border: none;
+  border-radius: 5px;
+  outline: none;
+
+  &:hover {
+    background-color: #ff610c;
+  }
+
+  &:disabled {
+    background-color: #ccc;
+    cursor: not-allowed;
+  }
 `;
 
 const PageNumber = styled.span`
-  padding: 5px 10px;
+  padding: 8px 12px;
   margin: 0 5px;
-  cursor: pointer;
-  background-color: #ddd;
+  background-color: #f0f0f0;
   border-radius: 5px;
-
-  &:hover {
-    background-color: #aaa;
-    color: white;
-  }
 `;
 
 export default HotelCards;
