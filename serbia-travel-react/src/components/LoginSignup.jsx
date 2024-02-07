@@ -3,16 +3,22 @@ import styled from "styled-components";
 import user_icon from "../assets/person.png";
 import email_icon from "../assets/email.png";
 import password_icon from "../assets/password.png";
+import Logo from "../assets/logo.png";
 import Button from "./Button";
+import { useNavigate } from "react-router-dom";
 
 export default function LoginSignup() {
   const [action, setAction] = useState("Login");
+  const navigate = useNavigate();
 
   function login() {}
   function signUp() {}
 
   return (
     <Container>
+      <div className="brand">
+        <img onClick={() => navigate("/")} src={Logo} alt="logo" />
+      </div>
       <div className="container">
         <div className="header">
           <div className="text">{action}</div>
@@ -67,6 +73,17 @@ const Container = styled.div`
     border: 1px solid #ccc;
     border-radius: 5px;
     background-color: #f9f9f9;
+  }
+
+  .brand {
+    text-align: center;
+    margin-bottom: 20px;
+  }
+  
+  .brand img {
+    cursor: pointer;
+    height: 50px;
+    width: 175px;
   }
 
   .header {
