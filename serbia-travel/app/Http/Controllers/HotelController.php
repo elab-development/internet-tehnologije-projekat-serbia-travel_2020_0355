@@ -10,7 +10,6 @@ use App\Models\Hotel;
 use App\Models\Room;
 use Illuminate\Http\Request;
 use Illuminate\Pagination\LengthAwarePaginator;
-use Illuminate\Pagination\Paginator;
 
 class HotelController extends Controller
 {
@@ -67,6 +66,16 @@ class HotelController extends Controller
     public function show(Hotel $hotel)
     {
         return new HotelResource($hotel);
+    }
+
+    public function hotelsByUserId($userId, Request $request)
+    {
+        $perPage = $request->input('per_page', 10);
+        $page = $request->input('page', 1);
+
+        $hotels = Hotel::where('user_id', $userId)->paginate($perPage, ['*'], 'page', $page);
+
+        return HotelResource::collection($hotels);
     }
 
     public function store(Request $request)

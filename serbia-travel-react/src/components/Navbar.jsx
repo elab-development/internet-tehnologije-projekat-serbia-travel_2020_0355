@@ -4,7 +4,6 @@ import styled from "styled-components";
 import { GiHamburgerMenu } from "react-icons/gi";
 import { MdClose } from "react-icons/md";
 import Logo from "../assets/logo.png";
-import BookingModal from "./Booking";
 
 export default function Navbar() {
   const [isNavOpen, setIsNavOpen] = useState(false);
@@ -12,23 +11,16 @@ export default function Navbar() {
   const token = localStorage.getItem("token");
   const user = localStorage.getItem("user");
   const userId = localStorage.getItem("userId");
+  const role = localStorage.getItem("role");
   const html = document.querySelector("html");
   html.addEventListener("click", (e) => setIsNavOpen(false));
-  const [showBookingModal, setShowBookingModal] = useState(false);
 
   const handleLogout = () => {
     localStorage.removeItem("token");
     localStorage.removeItem("user");
     localStorage.removeItem("userId");
+    localStorage.removeItem("role");
     navigate("/login");
-  };
-
-  const handleBookingModalOpen = () => {
-    setShowBookingModal(true);
-  };
-
-  const handleBookingModalClose = () => {
-    setShowBookingModal(false);
   };
 
   return (

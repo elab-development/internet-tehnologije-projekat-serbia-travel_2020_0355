@@ -14,17 +14,8 @@ export default function Home() {
   const [destination, setDestination] = useState("");
   const [destinations, setDestinations] = useState([]);
   const [numberOfBeds, setNumberOfBeds] = useState("");
-  const {
-    data: holidays,
-    loading,
-    error,
-  } = useFetch("https://public-holiday.p.rapidapi.com/2024/RS", {
-    headers: {
-      "X-RapidAPI-Key": "8ce8b25bfcmsh8fc7f0c21fcfd4ep15bf78jsnaf35ab89190b",
-      "X-RapidAPI-Host": "public-holiday.p.rapidapi.com",
-    },
-  });
-
+  const userRole = localStorage.getItem('role');
+  const userName = localStorage.getItem('user');
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -53,61 +44,70 @@ export default function Home() {
         <img src={HeroImage} alt="Hero" />
       </div>
       <div className="content">
-        <div className="info">
-          <h1>Where Every</h1>
-          <h1>Journey Begins</h1>
-          <Button text="Plan Your Trip" />
-        </div>
-        <div className="planner">
-          <form>
-            <div className="row">
-              <label>Destinations</label>
-              <select onChange={(e) => setDestination(e.target.value)}>
-                <option value="">Select Destination</option>
-                {destinations &&
-                  Array.isArray(destinations) &&
-                  destinations.map((destination) => {
-                    return (
-                      <option key={destination.id} value={destination.name}>
-                        {destination.name}
-                      </option>
-                    );
-                  })}
-              </select>
-            </div>
-            <div className="row">
-              <label>Check In</label>
-              <DatePicker
-                selected={startDate}
-                onChange={(date) => setStartDate(date)}
-              />
-            </div>
-            <div className="row">
-              <label>Check Out</label>
-              <DatePicker
-                selected={endDate}
-                onChange={(date) => setEndDate(date)}
-              />
-            </div>
-            <div className="row">
-              <label>Number of Beds</label>
-              <select
-                value={numberOfBeds}
-                onChange={(e) => setNumberOfBeds(e.target.value)}
-              >
-                <option value="">Select Number of Beds</option>
-                <option value="1">1 Bed</option>
-                <option value="2">2 Beds</option>
-                <option value="3">3 Beds</option>
-                <option value="4">4 Beds</option>
-                <option value="5">5 Beds</option>
-              </select>
-            </div>
-            <div className="row">
-              <Button onClick={handleSearchHotels} text="Search Hotels" />
-            </div>
-          </form>
-        </div>
+        {userRole === "hotel_owner" ? (
+          <div className="info">
+            <h1>Welcome {userName}</h1>
+            <Button text="Your Hotels" onClick={() => navigate("/my-hotels")} />
+          </div>
+        ) : (
+          <div className="info">
+            <h1>Where Every</h1>
+            <h1>Journey Begins</h1>
+            <Button text="Plan Your Trip" />
+          </div>
+        )}
+        {userRole !== "hotel_owner" && (
+          <div className="planner">
+            <form>
+              <div className="row">
+                <label>Destinations</label>
+                <select onChange={(e) => setDestination(e.target.value)}>
+                  <option value="">Select Destination</option>
+                  {destinations &&
+                    Array.isArray(destinations) &&
+                    destinations.map((destination) => {
+                      return (
+                        <option key={destination.id} value={destination.name}>
+                          {destination.name}
+                        </option>
+                      );
+                    })}
+                </select>
+              </div>
+              <div className="row">
+                <label>Check In</label>
+                <DatePicker
+                  selected={startDate}
+                  onChange={(date) => setStartDate(date)}
+                />
+              </div>
+              <div className="row">
+                <label>Check Out</label>
+                <DatePicker
+                  selected={endDate}
+                  onChange={(date) => setEndDate(date)}
+                />
+              </div>
+              <div className="row">
+                <label>Number of Beds</label>
+                <select
+                  value={numberOfBeds}
+                  onChange={(e) => setNumberOfBeds(e.target.value)}
+                >
+                  <option value="">Select Number of Beds</option>
+                  <option value="1">1 Bed</option>
+                  <option value="2">2 Beds</option>
+                  <option value="3">3 Beds</option>
+                  <option value="4">4 Beds</option>
+                  <option value="5">5 Beds</option>
+                </select>
+              </div>
+              <div className="row">
+                <Button onClick={handleSearchHotels} text="Search Hotels" />
+              </div>
+            </form>
+          </div>
+        )}
       </div>
     </Section>
   );

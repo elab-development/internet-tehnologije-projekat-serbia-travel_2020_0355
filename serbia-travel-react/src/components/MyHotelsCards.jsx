@@ -4,53 +4,27 @@ import Card from "./Card";
 import axios from "axios";
 import tour1 from "../assets/tour1.png";
 import HotelModal from "./HotelModal";
-import useFetch from "./useFetch";
 
-const HotelCards = ({ formParams }) => {
+const MyHotelsCards = () => {
   const hotelsPerPage = 6;
-  const destination = formParams.destination;
-  const numberOfBeds = formParams.numberOfBeds;
-  const startDate = formParams.startDate;
-  const endDate = formParams.endDate;
   const [hotels, setHotels] = useState(null);
   const [pageNumber, setPageNumber] = useState(1);
-  const [filter, setFilter] = useState("all");
   const [selectedHotel, setSelectedHotel] = useState(null);
-  const [rooms, setRooms] = useState([]);
-  const [adjustedRooms, setAdjustedRooms] = useState([]);
-  const {
-    data: holidays,
-    loading,
-    error,
-  } = useFetch("https://public-holiday.p.rapidapi.com/2024/RS", {
-    headers: {
-      "X-RapidAPI-Key": "8ce8b25bfcmsh8fc7f0c21fcfd4ep15bf78jsnaf35ab89190b",
-      "X-RapidAPI-Host": "public-holiday.p.rapidapi.com",
-    },
-  });
+  const userId = localStorage.getItem('userId');
+
 
   const changePageNumber = (page) => {
     setPageNumber(page);
   };
 
-  const handleFilterChange = (e) => {
-    setFilter(e.target.value);
-  };
-
   useEffect(() => {
-    if (!destination) return;
     const fetchHotels = async () => {
       try {
-        const response = await axios.get(`http://localhost:8000/api/hotels`, {
-          params: {
-            destination_name: destination,
-            start_date: formParams.startDate,
-            end_date: formParams.endDate,
-            number_of_beds: numberOfBeds,
-            number_of_stars: filter !== "all" ? filter : undefined,
-            page: pageNumber,
-            per_page: hotelsPerPage,
-          },
+        const response = await axios.get(`http://localhost:8000/api/hotels/owner/${userId}`, {
+            params: {
+                page: pageNumber,
+                per_page: hotelsPerPage
+            }
         });
         setHotels(response.data.data);
       } catch (error) {
@@ -58,26 +32,12 @@ const HotelCards = ({ formParams }) => {
       }
     };
     fetchHotels();
-  }, [destination, filter, pageNumber]);
+  }, [pageNumber]);
 
   const handleCardClick = async (hotel) => {
     setSelectedHotel(hotel);
     try {
       const response = await axios.get(`http://localhost:8000/api/hotels/${hotel.id}`);
-      const hotelRooms = response.data.hotel.rooms;
-      const adjustedHotelRooms = hotelRooms.map((room) => {
-        let updatedPrice = room.price;
-        for (let i = 0; i < holidays.length; i++) {
-          const holidayDate = new Date(holidays[i].date);
-          if (startDate <= holidayDate && endDate >= holidayDate) {
-            updatedPrice *= 0.9;
-            updatedPrice = parseFloat(updatedPrice.toFixed(2));
-            break;
-          }
-        }
-        return { ...room, price: updatedPrice };
-      });
-      setRooms(adjustedHotelRooms);
     } catch (error) {
       console.error("Error fetching hotel details:", error);
     }
@@ -89,19 +49,6 @@ const HotelCards = ({ formParams }) => {
 
   return (
     <div>
-      <FilterContainer>
-        <label>
-          Filter by Stars:
-          <select value={filter} onChange={handleFilterChange}>
-            <option value="all">All</option>
-            <option value="5">5 Stars</option>
-            <option value="4">4 Stars</option>
-            <option value="3">3 Stars</option>
-            <option value="2">2 Stars</option>
-            <option value="1">1 Stars</option>
-          </select>
-        </label>
-      </FilterContainer>
       <HotelCardsContainer>
         <CardContainer>
           {hotels &&
@@ -110,8 +57,6 @@ const HotelCards = ({ formParams }) => {
                 key={hotel.id}
                 image={tour1}
                 title={hotel.name}
-                price={200}
-                reviews={"7k"}
                 index={hotel.id}
                 onClick={() => handleCardClick(hotel)}
               />
@@ -136,9 +81,6 @@ const HotelCards = ({ formParams }) => {
       {selectedHotel && (
         <HotelModal
           hotelName={selectedHotel.name}
-          startDate = {startDate}
-          endDate = {endDate}
-          rooms={rooms}
           onClose={handleCloseModal}
         />
       )}
@@ -221,4 +163,4 @@ const PageNumber = styled.span`
   border-radius: 5px;
 `;
 
-export default HotelCards;
+export default MyHotelsCards;
