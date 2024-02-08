@@ -61,8 +61,8 @@ export default function Navbar() {
               Customers
             </a>
           </li>
-          <li className="download">
-            <a onClick={() => navigate("/download")}>Download App</a>
+          <li className="find-us">
+            <a onClick={() => navigate("/find-us")}>Find Us</a>
           </li>
           <li>
             {token ? (

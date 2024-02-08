@@ -3,8 +3,8 @@ import ReactDOM from "react-dom/client";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Hotels from "./components/Hotels";
 import App from "./App";
-import Download from "./components/Download";
 import LoginSignup from "./components/LoginSignup";
+import FindUs from "./components/FindUs";
 
 export default function Router() {
   return (
@@ -12,7 +12,7 @@ export default function Router() {
       <Routes>
         <Route path="/" element={<App />} />
         <Route path="/hotels" element={<Hotels />} />
-        <Route path="/download" element={<Download />} />
+        <Route path="/find-us" element={<FindUs />} />
         <Route path="/login" element={<LoginSignup />} />
       </Routes>
     </BrowserRouter>

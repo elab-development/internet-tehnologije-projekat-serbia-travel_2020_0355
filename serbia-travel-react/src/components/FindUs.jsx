@@ -3,7 +3,7 @@ import Footer from "./Footer";
 import Navbar from "./Navbar";
 import DownloadApp from "./DownloadApp";
 
-export default function Download() {
+export default function FindUs() {
   return (
     <div>
       <Navbar />
