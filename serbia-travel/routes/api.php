@@ -20,6 +20,7 @@ Route::resource('bookings', BookingController::class);
 Route::resource('rooms', RoomController::class);
 Route::post('/register', [AuthController::class, 'register']);
 Route::post('/login', [AuthController::class, 'login']);
+Route::get('bookings/user/{userId}', 'App\Http\Controllers\BookingController@getUserBookings');
 
 Route::group(['middleware' => ['auth:sanctum']], function () {
     Route::get('/profile', function (Request $request) {

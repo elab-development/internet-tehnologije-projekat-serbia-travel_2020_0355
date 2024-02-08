@@ -98,4 +98,11 @@ class BookingController extends Controller
 
         return $pdf->download('bookings.pdf');
     }
+
+    public function getUserBookings($userId)
+    {
+        $bookings = Booking::where('user_id', $userId)->with('room')->get();
+
+        return BookingResource::collection($bookings);
+    }
 }
