@@ -12,15 +12,22 @@ class Hotel extends Model
     protected $fillable = [
         'name',
         'stars',
-        'destination_id'
+        'destination_id',
+        'user_id'
     ];
 
-    public function destination() {
+    public function destination()
+    {
         return $this->belongsTo(Destination::class, 'destination_id');
     }
 
     public function rooms()
     {
         return $this->hasMany(Room::class);
+    }
+
+    public function user()
+    {
+        return $this->belongsTo(User::class, 'user_id');
     }
 }

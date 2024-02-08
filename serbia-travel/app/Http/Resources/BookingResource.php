@@ -16,6 +16,7 @@ class BookingResource extends JsonResource
             'start_date' => $this->resource->start_date,
             'end_date' => $this->resource->end_date,
             'room' => new RoomResource($this->whenLoaded('room')),
+            'user_id' => $this->resource->user_id
         ];
     }
 }
