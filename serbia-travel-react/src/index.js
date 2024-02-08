@@ -5,6 +5,7 @@ import Hotels from "./components/Hotels";
 import App from "./App";
 import LoginSignup from "./components/LoginSignup";
 import FindUs from "./components/FindUs";
+import Bookings from "./components/Bookings";
 
 export default function Router() {
   return (
@@ -14,6 +15,7 @@ export default function Router() {
         <Route path="/hotels" element={<Hotels />} />
         <Route path="/find-us" element={<FindUs />} />
         <Route path="/login" element={<LoginSignup />} />
+        <Route path="/bookings" element={<Bookings />} />
       </Routes>
     </BrowserRouter>
   );

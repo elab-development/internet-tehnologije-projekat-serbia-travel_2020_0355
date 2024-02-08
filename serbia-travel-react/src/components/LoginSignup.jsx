@@ -24,6 +24,7 @@ export default function LoginSignup() {
         );
         localStorage.setItem('token', response.data.access_token);
         localStorage.setItem('user', response.data.name);
+        localStorage.setItem('userId', response.data.id);
         navigate("/");
       } catch (error) {
         console.error("An error occurred during login:", error);
@@ -41,6 +42,7 @@ export default function LoginSignup() {
         );
         localStorage.setItem('token', response.data.access_token);
         localStorage.setItem('user', response.data.data.name);
+        localStorage.setItem('userId', response.data.data.id);
         navigate("/");
       } catch (error) {
         console.error("An error occurred during login:", error);
