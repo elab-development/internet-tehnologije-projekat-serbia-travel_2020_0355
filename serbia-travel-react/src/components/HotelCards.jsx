@@ -146,7 +146,6 @@ const HotelCards = ({ formParams }) => {
   );
 };
 
-
 const HotelCardsContainer = styled.div`
   margin-top: 20px;
   margin-bottom: 60px;
