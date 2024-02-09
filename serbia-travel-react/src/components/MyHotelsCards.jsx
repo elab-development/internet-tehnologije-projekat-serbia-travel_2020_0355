@@ -3,15 +3,16 @@ import styled from "styled-components";
 import Card from "./Card";
 import axios from "axios";
 import tour1 from "../assets/tour1.png";
-import HotelModal from "./HotelModal";
+import HotelEditModal from "./HotelEditModal";
 
 const MyHotelsCards = () => {
   const hotelsPerPage = 6;
-  const [hotels, setHotels] = useState(null);
+  const [hotels, setHotels] = useState([]);
   const [pageNumber, setPageNumber] = useState(1);
   const [selectedHotel, setSelectedHotel] = useState(null);
   const userId = localStorage.getItem('userId');
-
+  const [isEditModalOpen, setIsEditModalOpen] = useState(false);
+  const [refresh, setRefresh] = useState(false);
 
   const changePageNumber = (page) => {
     setPageNumber(page);
@@ -32,12 +33,12 @@ const MyHotelsCards = () => {
       }
     };
     fetchHotels();
-  }, [pageNumber]);
+  }, [pageNumber, refresh]);
 
   const handleCardClick = async (hotel) => {
-    setSelectedHotel(hotel);
     try {
       const response = await axios.get(`http://localhost:8000/api/hotels/${hotel.id}`);
+      setSelectedHotel(response.data.hotel);
     } catch (error) {
       console.error("Error fetching hotel details:", error);
     }
@@ -45,6 +46,8 @@ const MyHotelsCards = () => {
 
   const handleCloseModal = () => {
     setSelectedHotel(null);
+    setIsEditModalOpen(false);
+    setRefresh(prevState => !prevState);
   };
 
   return (
@@ -79,8 +82,8 @@ const MyHotelsCards = () => {
         </Pagination>
       </HotelCardsContainer>
       {selectedHotel && (
-        <HotelModal
-          hotelName={selectedHotel.name}
+        <HotelEditModal
+          hotel={selectedHotel}
           onClose={handleCloseModal}
         />
       )}
