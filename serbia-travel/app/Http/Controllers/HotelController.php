@@ -10,7 +10,6 @@ use App\Models\Hotel;
 use App\Models\Room;
 use Illuminate\Http\Request;
 use Illuminate\Pagination\LengthAwarePaginator;
-use Illuminate\Pagination\Paginator;
 
 class HotelController extends Controller
 {
@@ -20,6 +19,7 @@ class HotelController extends Controller
         $startDate = $request->input('start_date');
         $endDate = $request->input('end_date');
         $numberOfBeds = $request->input('number_of_beds');
+        $numberOfStars = $request->input('number_of_stars');
 
         if (empty($destinationName) || empty($startDate) || empty($endDate) || empty($numberOfBeds)) {
             return response()->json(['message' => 'All parameters are required'], 400);
@@ -32,6 +32,10 @@ class HotelController extends Controller
         }
 
         $hotelsQuery = Hotel::where('destination_id', $destination->id);
+
+        if (!empty($numberOfStars)) {
+            $hotelsQuery->where('stars', $numberOfStars);
+        }
 
         $hotels = $hotelsQuery->get();
 
@@ -62,6 +66,16 @@ class HotelController extends Controller
     public function show(Hotel $hotel)
     {
         return new HotelResource($hotel);
+    }
+
+    public function hotelsByUserId($userId, Request $request)
+    {
+        $perPage = $request->input('per_page', 10);
+        $page = $request->input('page', 1);
+
+        $hotels = Hotel::where('user_id', $userId)->paginate($perPage, ['*'], 'page', $page);
+
+        return HotelResource::collection($hotels);
     }
 
     public function store(Request $request)

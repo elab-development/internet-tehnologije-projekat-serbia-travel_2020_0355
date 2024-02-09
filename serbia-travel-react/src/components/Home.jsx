@@ -4,42 +4,38 @@ import HeroImage from "../assets/hero.png";
 import Button from "./Button";
 import DatePicker from "react-datepicker";
 import useFetch from "./useFetch";
+import axios from "axios";
+import { useNavigate } from "react-router-dom";
 import "react-datepicker/dist/react-datepicker.css";
 
-export default function Home({ hotels }) {
+export default function Home() {
   const [startDate, setStartDate] = useState(new Date());
   const [endDate, setEndDate] = useState(new Date());
-  const [adjustedHotels, setAdjustedHotels] = useState(hotels);
-  const { data: holidays, loading, error } = useFetch(
-    "https://public-holiday.p.rapidapi.com/2024/RS",
-    {
-      headers: {
-        "X-RapidAPI-Key":
-          "8ce8b25bfcmsh8fc7f0c21fcfd4ep15bf78jsnaf35ab89190b",
-        "X-RapidAPI-Host": "public-holiday.p.rapidapi.com",
-      },
-    }
-  );
+  const [destination, setDestination] = useState("");
+  const [destinations, setDestinations] = useState([]);
+  const [numberOfBeds, setNumberOfBeds] = useState("");
+  const userRole = localStorage.getItem('role');
+  const userName = localStorage.getItem('user');
+  const navigate = useNavigate();
 
   useEffect(() => {
-    if (!loading && !error && holidays) {
-      adjustHotelPrices();
-    }
-  }, [loading, error, holidays]);
-
-  const adjustHotelPrices = () => {
-    const newHotels = hotels.map((hotel) => {
-      let updatedPrice = hotel.price;
-      for (let i = 0; i < holidays.length; i++) {
-        const holidayDate = new Date(holidays[i].date);
-        if (startDate <= holidayDate && endDate >= holidayDate) {
-          updatedPrice *= 0.9;
-          break;
-        }
+    const fetchDestinations = async () => {
+      try {
+        const response = await axios.get(
+          "http://localhost:8000/api/destinations"
+        );
+        setDestinations(response.data.data);
+      } catch (error) {
+        console.log("Error fetching destinations", error);
       }
-      return { ...hotel, price: updatedPrice };
+    };
+    fetchDestinations();
+  }, []);
+
+  const handleSearchHotels = () => {
+    navigate("/hotels", {
+      state: { data: { startDate, endDate, destination, numberOfBeds } },
     });
-    setAdjustedHotels(newHotels);
   };
 
   return (
@@ -48,48 +44,75 @@ export default function Home({ hotels }) {
         <img src={HeroImage} alt="Hero" />
       </div>
       <div className="content">
-        <div className="info">
-          <h1>Where Every</h1>
-          <h1>Journey Begins</h1>
-          <Button text="Plan Your Trip" />
-        </div>
-        <div className="planner">
-          <form>
-            <div className="row">
-              <label>Destinations</label>
-              <select>
-                <option>Belgrade, Serbia</option>
-                <option>Tokyo, Japan</option>
-                <option>Paris, France</option>
-                <option>London, UK</option>
-                <option>Sydney, Australia</option>
-                <option>Rome, Italy</option>
-                <option>Cairo, Egypt</option>
-                <option>Moscow, Russia</option>
-                <option>Beijing, China</option>
-                <option>Berlin, Germany</option>
-                <option>Rio de Janeiro, Brazil</option>
-              </select>
-            </div>
-            <div className="row">
-              <label>Check In</label>
-              <DatePicker
-                selected={startDate}
-                onChange={(date) => setStartDate(date)}
-              />
-            </div>
-            <div className="row">
-              <label>Check Out</label>
-              <DatePicker
-                selected={endDate}
-                onChange={(date) => setEndDate(date)}
-              />
-            </div>
-            <div className="row">
-              <Button to="/hotels" text="Search Hotels" data={adjustedHotels} />
-            </div>
-          </form>
-        </div>
+      {userRole === "hotel_owner" ? (
+          <div className="info">
+            <h1>Welcome {userName}</h1>
+            <Button text="Your Hotels" onClick={() => navigate("/my-hotels")} />
+          </div>
+        ) : userRole === "admin" ? (
+          <div className="info">
+            <h1>Welcome {userName}</h1>
+            <Button text="Add a Destination" onClick={() => navigate("/new-destination")} />
+          </div>
+        ) : (
+          <div className="info">
+            <h1>Where Every</h1>
+            <h1>Journey Begins</h1>
+            <Button text="Plan Your Trip" />
+          </div>
+        )}
+        {userRole !== "hotel_owner" && userRole !== "admin" && (
+          <div className="planner">
+            <form>
+              <div className="row">
+                <label>Destinations</label>
+                <select onChange={(e) => setDestination(e.target.value)}>
+                  <option value="">Select Destination</option>
+                  {destinations &&
+                    Array.isArray(destinations) &&
+                    destinations.map((destination) => {
+                      return (
+                        <option key={destination.id} value={destination.name}>
+                          {destination.name}
+                        </option>
+                      );
+                    })}
+                </select>
+              </div>
+              <div className="row">
+                <label>Check In</label>
+                <DatePicker
+                  selected={startDate}
+                  onChange={(date) => setStartDate(date)}
+                />
+              </div>
+              <div className="row">
+                <label>Check Out</label>
+                <DatePicker
+                  selected={endDate}
+                  onChange={(date) => setEndDate(date)}
+                />
+              </div>
+              <div className="row">
+                <label>Number of Beds</label>
+                <select
+                  value={numberOfBeds}
+                  onChange={(e) => setNumberOfBeds(e.target.value)}
+                >
+                  <option value="">Select Number of Beds</option>
+                  <option value="1">1 Bed</option>
+                  <option value="2">2 Beds</option>
+                  <option value="3">3 Beds</option>
+                  <option value="4">4 Beds</option>
+                  <option value="5">5 Beds</option>
+                </select>
+              </div>
+              <div className="row">
+                <Button onClick={handleSearchHotels} text="Search Hotels" />
+              </div>
+            </form>
+          </div>
+        )}
       </div>
     </Section>
   );
