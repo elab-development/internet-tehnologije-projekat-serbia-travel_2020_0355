@@ -10,6 +10,7 @@ use App\Models\Hotel;
 use App\Models\Room;
 use Illuminate\Http\Request;
 use Illuminate\Pagination\LengthAwarePaginator;
+use Illuminate\Support\Facades\DB;
 
 class HotelController extends Controller
 {
@@ -87,15 +88,23 @@ class HotelController extends Controller
             'user_id' => 'required|exists:users,id'
         ]);
 
-        $hotel = new Hotel();
-        $hotel->name = $validatedData['name'];
-        $hotel->stars = $validatedData['stars'];
-        $hotel->destination_id = $validatedData['destination_id'];
-        $hotel->user_id = $validatedData['user_id'];
+        try {
+            DB::beginTransaction();
 
-        $hotel->save();
+            $hotel = new Hotel();
+            $hotel->name = $validatedData['name'];
+            $hotel->stars = $validatedData['stars'];
+            $hotel->destination_id = $validatedData['destination_id'];
+            $hotel->user_id = $validatedData['user_id'];
+            $hotel->save();
 
-        return new HotelResource($hotel);
+            DB::commit();
+
+            return new HotelResource($hotel);
+        } catch (\Exception $e) {
+            DB::rollBack();
+            return response()->json(['message' => 'Failed to create hotel'], 500);
+        }
     }
 
     public function update(Request $request, Hotel $hotel)
@@ -106,18 +115,36 @@ class HotelController extends Controller
             'destination_id' => 'required|exists:destinations,id'
         ]);
 
-        $hotel->name = $validatedData['name'];
-        $hotel->stars = $validatedData['stars'];
-        $hotel->destination_id = $validatedData['destination_id'];
+        try {
+            DB::beginTransaction();
 
-        $hotel->save();
+            $hotel->name = $validatedData['name'];
+            $hotel->stars = $validatedData['stars'];
+            $hotel->destination_id = $validatedData['destination_id'];
+            $hotel->save();
 
-        return new HotelResource($hotel);
+            DB::commit();
+
+            return new HotelResource($hotel);
+        } catch (\Exception $e) {
+            DB::rollBack();
+            return response()->json(['message' => 'Failed to update hotel'], 500);
+        }
     }
 
     public function destroy(Hotel $hotel)
     {
-        $hotel->delete();
-        return response()->json(['message' => 'Hotel deleted successfully']);
+        try {
+            DB::beginTransaction();
+
+            $hotel->delete();
+
+            DB::commit();
+
+            return response()->json(['message' => 'Hotel deleted successfully']);
+        } catch (\Exception $e) {
+            DB::rollBack();
+            return response()->json(['message' => 'Failed to delete hotel'], 500);
+        }
     }
 }
