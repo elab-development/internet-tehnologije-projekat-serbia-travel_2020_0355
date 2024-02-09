@@ -75,11 +75,13 @@ export default function Navbar() {
               <>
                 <span>{user}</span>
                 <ul className="dropdown">
+                  {role === 'user' && (
                   <li>
-                    <a onClick = {() => navigate("/bookings")}>
+                    <a onClick={() => navigate("/bookings")}>
                       Bookings
                     </a>
                   </li>
+                  )}
                   <li>
                     <a onClick={handleLogout}>Logout</a>
                   </li>
