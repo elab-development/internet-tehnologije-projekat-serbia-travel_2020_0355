@@ -1,0 +1,1627 @@
+{
+    "variable": [
+        {
+            "id": "baseUrl",
+            "key": "baseUrl",
+            "type": "string",
+            "name": "string",
+            "value": "http:\/\/localhost"
+        }
+    ],
+    "info": {
+        "name": "Laravel",
+        "_postman_id": "905254d6-7a4e-4302-b128-a66c430a7000",
+        "description": "",
+        "schema": "https:\/\/schema.getpostman.com\/json\/collection\/v2.1.0\/collection.json"
+    },
+    "item": [
+        {
+            "name": "Endpoints",
+            "description": "",
+            "item": [
+                {
+                    "name": "GET api\/user",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/user",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/user"
+                        },
+                        "method": "GET",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": null,
+                        "description": "",
+                        "auth": {
+                            "type": "noauth"
+                        }
+                    },
+                    "response": [
+                        {
+                            "header": [
+                                {
+                                    "key": "cache-control",
+                                    "value": "no-cache, private"
+                                },
+                                {
+                                    "key": "content-type",
+                                    "value": "application\/json"
+                                },
+                                {
+                                    "key": "access-control-allow-origin",
+                                    "value": "http:\/\/localhost:3000"
+                                }
+                            ],
+                            "code": 401,
+                            "body": "{\"message\":\"Unauthenticated.\"}",
+                            "name": ""
+                        }
+                    ]
+                },
+                {
+                    "name": "GET api\/destinations",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/destinations",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/destinations"
+                        },
+                        "method": "GET",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": null,
+                        "description": "",
+                        "auth": {
+                            "type": "noauth"
+                        }
+                    },
+                    "response": [
+                        {
+                            "header": [
+                                {
+                                    "key": "cache-control",
+                                    "value": "no-cache, private"
+                                },
+                                {
+                                    "key": "content-type",
+                                    "value": "application\/json"
+                                },
+                                {
+                                    "key": "x-ratelimit-limit",
+                                    "value": "60"
+                                },
+                                {
+                                    "key": "x-ratelimit-remaining",
+                                    "value": "59"
+                                },
+                                {
+                                    "key": "access-control-allow-origin",
+                                    "value": "http:\/\/localhost:3000"
+                                }
+                            ],
+                            "code": 200,
+                            "body": "{\"data\":[{\"id\":1,\"name\":\"Pozarevacc\",\"country\":{\"id\":1,\"name\":\"Serbiaa\",\"created_at\":\"2023-12-27T16:40:46.000000Z\",\"updated_at\":\"2024-01-09T00:30:27.000000Z\",\"country_code\":\"+381\"},\"hotels\":[{\"id\":1,\"name\":\"Murphy and Sons\",\"stars\":2,\"destination_id\":1,\"created_at\":\"2023-12-28T19:54:38.000000Z\",\"updated_at\":\"2023-12-28T19:54:38.000000Z\",\"user_id\":0},{\"id\":5,\"name\":\"Lubowitz-Keebler\",\"stars\":1,\"destination_id\":1,\"created_at\":\"2023-12-28T19:54:38.000000Z\",\"updated_at\":\"2023-12-28T19:54:38.000000Z\",\"user_id\":0},{\"id\":8,\"name\":\"Witting, Kemmer and nitzsche\",\"stars\":2,\"destination_id\":1,\"created_at\":\"2023-12-28T19:54:38.000000Z\",\"updated_at\":\"2024-02-09T01:52:17.000000Z\",\"user_id\":21},{\"id\":9,\"name\":\"O'Kon Ltd\",\"stars\":4,\"destination_id\":1,\"created_at\":\"2023-12-28T19:54:38.000000Z\",\"updated_at\":\"2023-12-28T19:54:38.000000Z\",\"user_id\":21}]},{\"id\":2,\"name\":\"Herceg Novi\",\"country\":{\"id\":2,\"name\":\"Montenegro\",\"created_at\":\"2023-12-27T16:40:46.000000Z\",\"updated_at\":\"2023-12-27T16:40:46.000000Z\",\"country_code\":\"+382\"},\"hotels\":[{\"id\":4,\"name\":\"Walker PLC\",\"stars\":4,\"destination_id\":2,\"created_at\":\"2023-12-28T19:54:38.000000Z\",\"updated_at\":\"2023-12-28T19:54:38.000000Z\",\"user_id\":0},{\"id\":6,\"name\":\"Lowe and Sons\",\"stars\":3,\"destination_id\":2,\"created_at\":\"2023-12-28T19:54:38.000000Z\",\"updated_at\":\"2024-02-09T00:40:10.000000Z\",\"user_id\":21}]},{\"id\":3,\"name\":\"Novi Sad\",\"country\":{\"id\":1,\"name\":\"Serbiaa\",\"created_at\":\"2023-12-27T16:40:46.000000Z\",\"updated_at\":\"2024-01-09T00:30:27.000000Z\",\"country_code\":\"+381\"},\"hotels\":[{\"id\":2,\"name\":\"Welch-Cronin\",\"stars\":2,\"destination_id\":3,\"created_at\":\"2023-12-28T19:54:38.000000Z\",\"updated_at\":\"2023-12-28T19:54:38.000000Z\",\"user_id\":0},{\"id\":7,\"name\":\"Nitzsche, Carroll and Kuphal\",\"stars\":3,\"destination_id\":3,\"created_at\":\"2023-12-28T19:54:38.000000Z\",\"updated_at\":\"2023-12-28T19:54:38.000000Z\",\"user_id\":0}]},{\"id\":4,\"name\":\"Beograd\",\"country\":{\"id\":1,\"name\":\"Serbiaa\",\"created_at\":\"2023-12-27T16:40:46.000000Z\",\"updated_at\":\"2024-01-09T00:30:27.000000Z\",\"country_code\":\"+381\"},\"hotels\":[{\"id\":3,\"name\":\"Little Ltd\",\"stars\":4,\"destination_id\":4,\"created_at\":\"2023-12-28T19:54:38.000000Z\",\"updated_at\":\"2023-12-28T19:54:38.000000Z\",\"user_id\":0},{\"id\":10,\"name\":\"Lubowitz, Barton and Klein\",\"stars\":2,\"destination_id\":4,\"created_at\":\"2023-12-28T19:54:38.000000Z\",\"updated_at\":\"2023-12-28T19:54:38.000000Z\",\"user_id\":21},{\"id\":11,\"name\":\"Hotel Moskva\",\"stars\":4,\"destination_id\":4,\"created_at\":\"2023-12-28T20:10:36.000000Z\",\"updated_at\":\"2024-02-08T21:05:01.000000Z\",\"user_id\":0},{\"id\":13,\"name\":\"Harris-Pouros\",\"stars\":3,\"destination_id\":4,\"created_at\":\"2024-01-08T20:32:59.000000Z\",\"updated_at\":\"2024-01-08T20:32:59.000000Z\",\"user_id\":21},{\"id\":14,\"name\":\"Williamson-Corkery\",\"stars\":5,\"destination_id\":4,\"created_at\":\"2024-01-08T20:32:59.000000Z\",\"updated_at\":\"2024-01-08T20:32:59.000000Z\",\"user_id\":0},{\"id\":15,\"name\":\"Douglas-Jaskolski\",\"stars\":1,\"destination_id\":4,\"created_at\":\"2024-01-08T20:32:59.000000Z\",\"updated_at\":\"2024-01-08T20:32:59.000000Z\",\"user_id\":0},{\"id\":16,\"name\":\"Stokes Inc\",\"stars\":4,\"destination_id\":4,\"created_at\":\"2024-01-08T20:32:59.000000Z\",\"updated_at\":\"2024-01-08T20:32:59.000000Z\",\"user_id\":0},{\"id\":17,\"name\":\"Quigley, O'Hara and Breitenberg\",\"stars\":1,\"destination_id\":4,\"created_at\":\"2024-01-08T20:32:59.000000Z\",\"updated_at\":\"2024-01-08T20:32:59.000000Z\",\"user_id\":0},{\"id\":18,\"name\":\"Simonis Inc\",\"stars\":1,\"destination_id\":4,\"created_at\":\"2024-01-08T20:32:59.000000Z\",\"updated_at\":\"2024-01-08T20:32:59.000000Z\",\"user_id\":0},{\"id\":19,\"name\":\"Moore-Quitzon\",\"stars\":1,\"destination_id\":4,\"created_at\":\"2024-01-08T20:32:59.000000Z\",\"updated_at\":\"2024-01-08T20:32:59.000000Z\",\"user_id\":0},{\"id\":20,\"name\":\"Durgan and Sons\",\"stars\":4,\"destination_id\":4,\"created_at\":\"2024-01-08T20:32:59.000000Z\",\"updated_at\":\"2024-01-08T20:32:59.000000Z\",\"user_id\":0},{\"id\":22,\"name\":\"Pacocha LLC\",\"stars\":5,\"destination_id\":4,\"created_at\":\"2024-01-08T20:32:59.000000Z\",\"updated_at\":\"2024-01-08T20:32:59.000000Z\",\"user_id\":0},{\"id\":24,\"name\":\"Hotel Mirijevo\",\"stars\":4,\"destination_id\":4,\"created_at\":\"2024-01-12T22:16:07.000000Z\",\"updated_at\":\"2024-01-12T22:16:07.000000Z\",\"user_id\":21}]},{\"id\":5,\"name\":\"Vranje\",\"country\":{\"id\":1,\"name\":\"Serbiaa\",\"created_at\":\"2023-12-27T16:40:46.000000Z\",\"updated_at\":\"2024-01-09T00:30:27.000000Z\",\"country_code\":\"+381\"},\"hotels\":[]},{\"id\":6,\"name\":\"Pristina\",\"country\":{\"id\":1,\"name\":\"Serbiaa\",\"created_at\":\"2023-12-27T16:40:46.000000Z\",\"updated_at\":\"2024-01-09T00:30:27.000000Z\",\"country_code\":\"+381\"},\"hotels\":[]},{\"id\":7,\"name\":\"Pozega\",\"country\":{\"id\":1,\"name\":\"Serbiaa\",\"created_at\":\"2023-12-27T16:40:46.000000Z\",\"updated_at\":\"2024-01-09T00:30:27.000000Z\",\"country_code\":\"+381\"},\"hotels\":[]},{\"id\":8,\"name\":\"Kavos\",\"country\":{\"id\":3,\"name\":\"Greece\",\"created_at\":\"2023-12-27T16:40:46.000000Z\",\"updated_at\":\"2023-12-27T16:40:46.000000Z\",\"country_code\":\"+30\"},\"hotels\":[]},{\"id\":9,\"name\":\"Kefalonia\",\"country\":{\"id\":3,\"name\":\"Greece\",\"created_at\":\"2023-12-27T16:40:46.000000Z\",\"updated_at\":\"2023-12-27T16:40:46.000000Z\",\"country_code\":\"+30\"},\"hotels\":[]},{\"id\":10,\"name\":\"Venecia\",\"country\":{\"id\":4,\"name\":\"Italy\",\"created_at\":\"2023-12-27T16:40:46.000000Z\",\"updated_at\":\"2023-12-27T16:40:46.000000Z\",\"country_code\":\"+39\"},\"hotels\":[]}]}",
+                            "name": ""
+                        }
+                    ]
+                },
+                {
+                    "name": "POST api\/destinations",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/destinations",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/destinations"
+                        },
+                        "method": "POST",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\"name\":\"ivuorlmlfxpehxgqpstoqlef\",\"country_id\":\"quo\"}"
+                        },
+                        "description": "",
+                        "auth": {
+                            "type": "noauth"
+                        }
+                    },
+                    "response": []
+                },
+                {
+                    "name": "GET api\/destinations\/{id}",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/destinations\/:id",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/destinations\/:id",
+                            "variable": [
+                                {
+                                    "id": "id",
+                                    "key": "id",
+                                    "value": "1",
+                                    "description": "The ID of the destination."
+                                }
+                            ]
+                        },
+                        "method": "GET",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": null,
+                        "description": "",
+                        "auth": {
+                            "type": "noauth"
+                        }
+                    },
+                    "response": [
+                        {
+                            "header": [
+                                {
+                                    "key": "cache-control",
+                                    "value": "no-cache, private"
+                                },
+                                {
+                                    "key": "content-type",
+                                    "value": "application\/json"
+                                },
+                                {
+                                    "key": "x-ratelimit-limit",
+                                    "value": "60"
+                                },
+                                {
+                                    "key": "x-ratelimit-remaining",
+                                    "value": "58"
+                                },
+                                {
+                                    "key": "access-control-allow-origin",
+                                    "value": "http:\/\/localhost:3000"
+                                }
+                            ],
+                            "code": 200,
+                            "body": "{\"destination\":{\"id\":1,\"name\":\"Pozarevacc\",\"country\":{\"id\":1,\"name\":\"Serbiaa\",\"created_at\":\"2023-12-27T16:40:46.000000Z\",\"updated_at\":\"2024-01-09T00:30:27.000000Z\",\"country_code\":\"+381\"},\"hotels\":[{\"id\":1,\"name\":\"Murphy and Sons\",\"stars\":2,\"destination_id\":1,\"created_at\":\"2023-12-28T19:54:38.000000Z\",\"updated_at\":\"2023-12-28T19:54:38.000000Z\",\"user_id\":0},{\"id\":5,\"name\":\"Lubowitz-Keebler\",\"stars\":1,\"destination_id\":1,\"created_at\":\"2023-12-28T19:54:38.000000Z\",\"updated_at\":\"2023-12-28T19:54:38.000000Z\",\"user_id\":0},{\"id\":8,\"name\":\"Witting, Kemmer and nitzsche\",\"stars\":2,\"destination_id\":1,\"created_at\":\"2023-12-28T19:54:38.000000Z\",\"updated_at\":\"2024-02-09T01:52:17.000000Z\",\"user_id\":21},{\"id\":9,\"name\":\"O'Kon Ltd\",\"stars\":4,\"destination_id\":1,\"created_at\":\"2023-12-28T19:54:38.000000Z\",\"updated_at\":\"2023-12-28T19:54:38.000000Z\",\"user_id\":21}]}}",
+                            "name": ""
+                        }
+                    ]
+                },
+                {
+                    "name": "PUT api\/destinations\/{id}",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/destinations\/:id",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/destinations\/:id",
+                            "variable": [
+                                {
+                                    "id": "id",
+                                    "key": "id",
+                                    "value": "1",
+                                    "description": "The ID of the destination."
+                                }
+                            ]
+                        },
+                        "method": "PUT",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\"name\":\"vpbbjqjhxdtjym\",\"country_id\":\"corrupti\"}"
+                        },
+                        "description": "",
+                        "auth": {
+                            "type": "noauth"
+                        }
+                    },
+                    "response": []
+                },
+                {
+                    "name": "DELETE api\/destinations\/{id}",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/destinations\/:id",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/destinations\/:id",
+                            "variable": [
+                                {
+                                    "id": "id",
+                                    "key": "id",
+                                    "value": "1",
+                                    "description": "The ID of the destination."
+                                }
+                            ]
+                        },
+                        "method": "DELETE",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": null,
+                        "description": "",
+                        "auth": {
+                            "type": "noauth"
+                        }
+                    },
+                    "response": []
+                },
+                {
+                    "name": "Display a listing of the resource.",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/users",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/users"
+                        },
+                        "method": "GET",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": null,
+                        "description": "",
+                        "auth": {
+                            "type": "noauth"
+                        }
+                    },
+                    "response": [
+                        {
+                            "header": [
+                                {
+                                    "key": "cache-control",
+                                    "value": "no-cache, private"
+                                },
+                                {
+                                    "key": "content-type",
+                                    "value": "application\/json"
+                                },
+                                {
+                                    "key": "x-ratelimit-limit",
+                                    "value": "60"
+                                },
+                                {
+                                    "key": "x-ratelimit-remaining",
+                                    "value": "57"
+                                },
+                                {
+                                    "key": "access-control-allow-origin",
+                                    "value": "http:\/\/localhost:3000"
+                                }
+                            ],
+                            "code": 200,
+                            "body": "[{\"id\":1,\"name\":\"Frida Terry V\",\"email\":\"metz.ismael@example.net\",\"email_verified_at\":\"2023-12-27T15:12:43.000000Z\",\"created_at\":\"2023-12-27T15:12:43.000000Z\",\"updated_at\":\"2023-12-27T15:12:43.000000Z\",\"role\":\"user\"},{\"id\":2,\"name\":\"Prof. Finn Hackett\",\"email\":\"john42@example.net\",\"email_verified_at\":\"2023-12-27T15:12:43.000000Z\",\"created_at\":\"2023-12-27T15:12:43.000000Z\",\"updated_at\":\"2023-12-27T15:12:43.000000Z\",\"role\":\"user\"},{\"id\":3,\"name\":\"Cleora Ziemann\",\"email\":\"ada.marquardt@example.net\",\"email_verified_at\":\"2023-12-27T15:12:43.000000Z\",\"created_at\":\"2023-12-27T15:12:43.000000Z\",\"updated_at\":\"2023-12-27T15:12:43.000000Z\",\"role\":\"user\"},{\"id\":4,\"name\":\"Prof. Julio Kuphal\",\"email\":\"donna.nienow@example.net\",\"email_verified_at\":\"2023-12-27T15:12:43.000000Z\",\"created_at\":\"2023-12-27T15:12:43.000000Z\",\"updated_at\":\"2023-12-27T15:12:43.000000Z\",\"role\":\"user\"},{\"id\":5,\"name\":\"Efren Carroll\",\"email\":\"rutherford.darion@example.com\",\"email_verified_at\":\"2023-12-27T15:12:43.000000Z\",\"created_at\":\"2023-12-27T15:12:43.000000Z\",\"updated_at\":\"2023-12-27T15:12:43.000000Z\",\"role\":\"user\"},{\"id\":6,\"name\":\"Mrs. Duane Daniel\",\"email\":\"dkautzer@example.net\",\"email_verified_at\":\"2023-12-27T15:12:43.000000Z\",\"created_at\":\"2023-12-27T15:12:43.000000Z\",\"updated_at\":\"2023-12-27T15:12:43.000000Z\",\"role\":\"user\"},{\"id\":7,\"name\":\"Cristopher Quitzon\",\"email\":\"lbogisich@example.net\",\"email_verified_at\":\"2023-12-27T15:12:43.000000Z\",\"created_at\":\"2023-12-27T15:12:43.000000Z\",\"updated_at\":\"2023-12-27T15:12:43.000000Z\",\"role\":\"user\"},{\"id\":8,\"name\":\"Idell Breitenberg\",\"email\":\"major01@example.net\",\"email_verified_at\":\"2023-12-27T15:12:43.000000Z\",\"created_at\":\"2023-12-27T15:12:43.000000Z\",\"updated_at\":\"2023-12-27T15:12:43.000000Z\",\"role\":\"user\"},{\"id\":9,\"name\":\"Prof. Carmen Prohaska\",\"email\":\"opouros@example.org\",\"email_verified_at\":\"2023-12-27T15:12:43.000000Z\",\"created_at\":\"2023-12-27T15:12:43.000000Z\",\"updated_at\":\"2023-12-27T15:12:43.000000Z\",\"role\":\"user\"},{\"id\":10,\"name\":\"Miss Rachel Simonis\",\"email\":\"abe51@example.net\",\"email_verified_at\":\"2023-12-27T15:12:43.000000Z\",\"created_at\":\"2023-12-27T15:12:43.000000Z\",\"updated_at\":\"2023-12-27T15:12:43.000000Z\",\"role\":\"user\"},{\"id\":11,\"name\":\"Test User\",\"email\":\"test@example.com\",\"email_verified_at\":\"2023-12-27T15:12:43.000000Z\",\"created_at\":\"2023-12-27T15:12:43.000000Z\",\"updated_at\":\"2023-12-27T15:12:43.000000Z\",\"role\":\"user\"},{\"id\":12,\"name\":\"Filip\",\"email\":\"filip@gmail.com\",\"email_verified_at\":null,\"created_at\":\"2024-01-05T01:17:07.000000Z\",\"updated_at\":\"2024-01-05T01:17:07.000000Z\",\"role\":\"user\"},{\"id\":16,\"name\":\"Svetlana Stojanovic\",\"email\":\"svetlana@gmail.com\",\"email_verified_at\":null,\"created_at\":\"2024-01-08T23:56:07.000000Z\",\"updated_at\":\"2024-01-12T22:28:36.000000Z\",\"role\":\"user\"},{\"id\":19,\"name\":\"Ognjen\",\"email\":\"ognjen@gmail.com\",\"email_verified_at\":null,\"created_at\":\"2024-02-07T20:02:26.000000Z\",\"updated_at\":\"2024-02-07T20:02:26.000000Z\",\"role\":\"user\"},{\"id\":20,\"name\":\"daca\",\"email\":\"daca@mejl.com\",\"email_verified_at\":null,\"created_at\":\"2024-02-07T20:04:18.000000Z\",\"updated_at\":\"2024-02-07T20:04:18.000000Z\",\"role\":\"user\"},{\"id\":21,\"name\":\"Branko Kockica\",\"email\":\"owner@gmail.com\",\"email_verified_at\":null,\"created_at\":\"2024-02-08T22:33:16.000000Z\",\"updated_at\":\"2024-02-08T22:33:16.000000Z\",\"role\":\"hotel_owner\"},{\"id\":22,\"name\":\"Admin\",\"email\":\"admin@gmail.com\",\"email_verified_at\":null,\"created_at\":\"2024-02-09T00:56:16.000000Z\",\"updated_at\":\"2024-02-09T00:56:16.000000Z\",\"role\":\"admin\"}]",
+                            "name": ""
+                        }
+                    ]
+                },
+                {
+                    "name": "POST api\/users",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/users",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/users"
+                        },
+                        "method": "POST",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\"name\":\"iwdquewjfllpqlkrxzqdwhlw\",\"email\":\"bjacobs@example.net\",\"password\":\"I\\\"[+AkWsW^5N\\\\Y58~\"}"
+                        },
+                        "description": "",
+                        "auth": {
+                            "type": "noauth"
+                        }
+                    },
+                    "response": []
+                },
+                {
+                    "name": "GET api\/users\/{id}",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/users\/:id",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/users\/:id",
+                            "variable": [
+                                {
+                                    "id": "id",
+                                    "key": "id",
+                                    "value": "1",
+                                    "description": "The ID of the user."
+                                }
+                            ]
+                        },
+                        "method": "GET",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": null,
+                        "description": "",
+                        "auth": {
+                            "type": "noauth"
+                        }
+                    },
+                    "response": [
+                        {
+                            "header": [
+                                {
+                                    "key": "cache-control",
+                                    "value": "no-cache, private"
+                                },
+                                {
+                                    "key": "content-type",
+                                    "value": "application\/json"
+                                },
+                                {
+                                    "key": "x-ratelimit-limit",
+                                    "value": "60"
+                                },
+                                {
+                                    "key": "x-ratelimit-remaining",
+                                    "value": "56"
+                                },
+                                {
+                                    "key": "access-control-allow-origin",
+                                    "value": "http:\/\/localhost:3000"
+                                }
+                            ],
+                            "code": 200,
+                            "body": "{\"id\":1,\"name\":\"Frida Terry V\",\"email\":\"metz.ismael@example.net\",\"email_verified_at\":\"2023-12-27T15:12:43.000000Z\",\"created_at\":\"2023-12-27T15:12:43.000000Z\",\"updated_at\":\"2023-12-27T15:12:43.000000Z\",\"role\":\"user\"}",
+                            "name": ""
+                        }
+                    ]
+                },
+                {
+                    "name": "PUT api\/users\/{id}",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/users\/:id",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/users\/:id",
+                            "variable": [
+                                {
+                                    "id": "id",
+                                    "key": "id",
+                                    "value": "1",
+                                    "description": "The ID of the user."
+                                }
+                            ]
+                        },
+                        "method": "PUT",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\"name\":\"fabtydy\",\"password\":\"f!}>>~e3LR\"}"
+                        },
+                        "description": "",
+                        "auth": {
+                            "type": "noauth"
+                        }
+                    },
+                    "response": []
+                },
+                {
+                    "name": "DELETE api\/users\/{id}",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/users\/:id",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/users\/:id",
+                            "variable": [
+                                {
+                                    "id": "id",
+                                    "key": "id",
+                                    "value": "1",
+                                    "description": "The ID of the user."
+                                }
+                            ]
+                        },
+                        "method": "DELETE",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": null,
+                        "description": "",
+                        "auth": {
+                            "type": "noauth"
+                        }
+                    },
+                    "response": []
+                },
+                {
+                    "name": "GET api\/hotels",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/hotels",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/hotels"
+                        },
+                        "method": "GET",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": null,
+                        "description": "",
+                        "auth": {
+                            "type": "noauth"
+                        }
+                    },
+                    "response": [
+                        {
+                            "header": [
+                                {
+                                    "key": "cache-control",
+                                    "value": "no-cache, private"
+                                },
+                                {
+                                    "key": "content-type",
+                                    "value": "application\/json"
+                                },
+                                {
+                                    "key": "x-ratelimit-limit",
+                                    "value": "60"
+                                },
+                                {
+                                    "key": "x-ratelimit-remaining",
+                                    "value": "55"
+                                },
+                                {
+                                    "key": "access-control-allow-origin",
+                                    "value": "http:\/\/localhost:3000"
+                                }
+                            ],
+                            "code": 400,
+                            "body": "{\"message\":\"All parameters are required\"}",
+                            "name": ""
+                        }
+                    ]
+                },
+                {
+                    "name": "POST api\/hotels",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/hotels",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/hotels"
+                        },
+                        "method": "POST",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\"name\":\"kzfomlpj\",\"stars\":1,\"destination_id\":\"incidunt\"}"
+                        },
+                        "description": "",
+                        "auth": {
+                            "type": "noauth"
+                        }
+                    },
+                    "response": []
+                },
+                {
+                    "name": "GET api\/hotels\/{id}",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/hotels\/:id",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/hotels\/:id",
+                            "variable": [
+                                {
+                                    "id": "id",
+                                    "key": "id",
+                                    "value": "1",
+                                    "description": "The ID of the hotel."
+                                }
+                            ]
+                        },
+                        "method": "GET",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": null,
+                        "description": "",
+                        "auth": {
+                            "type": "noauth"
+                        }
+                    },
+                    "response": [
+                        {
+                            "header": [
+                                {
+                                    "key": "cache-control",
+                                    "value": "no-cache, private"
+                                },
+                                {
+                                    "key": "content-type",
+                                    "value": "application\/json"
+                                },
+                                {
+                                    "key": "x-ratelimit-limit",
+                                    "value": "60"
+                                },
+                                {
+                                    "key": "x-ratelimit-remaining",
+                                    "value": "54"
+                                },
+                                {
+                                    "key": "access-control-allow-origin",
+                                    "value": "http:\/\/localhost:3000"
+                                }
+                            ],
+                            "code": 200,
+                            "body": "{\"hotel\":{\"id\":1,\"name\":\"Murphy and Sons\",\"stars\":2,\"destination\":{\"id\":1,\"name\":\"Pozarevacc\",\"created_at\":null,\"updated_at\":\"2024-01-08T23:13:53.000000Z\",\"country_id\":1},\"rooms\":[{\"id\":8,\"room_number\":\"873\",\"number_of_beds\":4,\"hotel_id\":1,\"created_at\":\"2024-01-08T19:20:16.000000Z\",\"updated_at\":\"2024-01-08T19:20:16.000000Z\",\"price\":\"14\"}],\"user_id\":0}}",
+                            "name": ""
+                        }
+                    ]
+                },
+                {
+                    "name": "PUT api\/hotels\/{id}",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/hotels\/:id",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/hotels\/:id",
+                            "variable": [
+                                {
+                                    "id": "id",
+                                    "key": "id",
+                                    "value": "1",
+                                    "description": "The ID of the hotel."
+                                }
+                            ]
+                        },
+                        "method": "PUT",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\"name\":\"nnfwemhjroalf\",\"stars\":1,\"destination_id\":\"quisquam\"}"
+                        },
+                        "description": "",
+                        "auth": {
+                            "type": "noauth"
+                        }
+                    },
+                    "response": []
+                },
+                {
+                    "name": "DELETE api\/hotels\/{id}",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/hotels\/:id",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/hotels\/:id",
+                            "variable": [
+                                {
+                                    "id": "id",
+                                    "key": "id",
+                                    "value": "1",
+                                    "description": "The ID of the hotel."
+                                }
+                            ]
+                        },
+                        "method": "DELETE",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": null,
+                        "description": "",
+                        "auth": {
+                            "type": "noauth"
+                        }
+                    },
+                    "response": []
+                },
+                {
+                    "name": "GET api\/bookings",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/bookings",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/bookings"
+                        },
+                        "method": "GET",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": null,
+                        "description": "",
+                        "auth": {
+                            "type": "noauth"
+                        }
+                    },
+                    "response": [
+                        {
+                            "header": [
+                                {
+                                    "key": "cache-control",
+                                    "value": "no-cache, private"
+                                },
+                                {
+                                    "key": "content-type",
+                                    "value": "application\/json"
+                                },
+                                {
+                                    "key": "x-ratelimit-limit",
+                                    "value": "60"
+                                },
+                                {
+                                    "key": "x-ratelimit-remaining",
+                                    "value": "53"
+                                },
+                                {
+                                    "key": "access-control-allow-origin",
+                                    "value": "http:\/\/localhost:3000"
+                                }
+                            ],
+                            "code": 200,
+                            "body": "{\"data\":[{\"id\":31,\"start_date\":\"2024-01-19 23:37:12\",\"end_date\":\"2024-02-18 15:44:30\",\"user_id\":0},{\"id\":32,\"start_date\":\"2024-01-25 20:57:32\",\"end_date\":\"2024-02-11 06:19:21\",\"user_id\":0},{\"id\":33,\"start_date\":\"2024-01-26 09:06:47\",\"end_date\":\"2024-03-03 15:16:01\",\"user_id\":0},{\"id\":34,\"start_date\":\"2024-01-17 00:32:00\",\"end_date\":\"2024-01-20 20:55:21\",\"user_id\":0},{\"id\":35,\"start_date\":\"2024-01-17 01:20:04\",\"end_date\":\"2024-02-14 17:53:55\",\"user_id\":0},{\"id\":36,\"start_date\":\"2024-02-03 16:45:31\",\"end_date\":\"2024-02-23 02:27:53\",\"user_id\":0},{\"id\":37,\"start_date\":\"2024-01-11 06:54:31\",\"end_date\":\"2024-02-27 22:38:07\",\"user_id\":0},{\"id\":38,\"start_date\":\"2024-01-30 16:36:43\",\"end_date\":\"2024-03-05 23:01:07\",\"user_id\":0},{\"id\":39,\"start_date\":\"2024-01-30 05:36:42\",\"end_date\":\"2024-02-03 14:20:51\",\"user_id\":0},{\"id\":40,\"start_date\":\"2024-01-31 08:39:02\",\"end_date\":\"2024-02-12 09:32:54\",\"user_id\":0},{\"id\":41,\"start_date\":\"2024-01-28 00:00:00\",\"end_date\":\"2024-01-30 00:00:00\",\"user_id\":0},{\"id\":43,\"start_date\":\"2024-02-25 00:00:00\",\"end_date\":\"2024-02-27 00:00:00\",\"user_id\":0},{\"id\":44,\"start_date\":\"2024-02-26 00:00:00\",\"end_date\":\"2024-02-27 00:00:00\",\"user_id\":0},{\"id\":45,\"start_date\":\"2024-02-12 00:00:00\",\"end_date\":\"2024-02-15 00:00:00\",\"user_id\":0},{\"id\":46,\"start_date\":\"2024-02-16 00:00:00\",\"end_date\":\"2024-02-17 00:00:00\",\"user_id\":0},{\"id\":47,\"start_date\":\"2024-02-02 00:00:00\",\"end_date\":\"2024-02-03 00:00:00\",\"user_id\":0},{\"id\":48,\"start_date\":\"2024-02-02 00:00:00\",\"end_date\":\"2024-02-03 00:00:00\",\"user_id\":12}]}",
+                            "name": ""
+                        }
+                    ]
+                },
+                {
+                    "name": "POST api\/bookings",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/bookings",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/bookings"
+                        },
+                        "method": "POST",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\"start_date\":\"sint\",\"end_date\":\"error\",\"room_id\":\"enim\"}"
+                        },
+                        "description": "",
+                        "auth": {
+                            "type": "noauth"
+                        }
+                    },
+                    "response": []
+                },
+                {
+                    "name": "GET api\/bookings\/{id}",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/bookings\/:id",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/bookings\/:id",
+                            "variable": [
+                                {
+                                    "id": "id",
+                                    "key": "id",
+                                    "value": "31",
+                                    "description": "The ID of the booking."
+                                }
+                            ]
+                        },
+                        "method": "GET",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": null,
+                        "description": "",
+                        "auth": {
+                            "type": "noauth"
+                        }
+                    },
+                    "response": [
+                        {
+                            "header": [
+                                {
+                                    "key": "cache-control",
+                                    "value": "no-cache, private"
+                                },
+                                {
+                                    "key": "content-type",
+                                    "value": "application\/json"
+                                },
+                                {
+                                    "key": "x-ratelimit-limit",
+                                    "value": "60"
+                                },
+                                {
+                                    "key": "x-ratelimit-remaining",
+                                    "value": "52"
+                                },
+                                {
+                                    "key": "access-control-allow-origin",
+                                    "value": "http:\/\/localhost:3000"
+                                }
+                            ],
+                            "code": 200,
+                            "body": "{\"hotel\":{\"id\":31,\"start_date\":\"2024-01-19 23:37:12\",\"end_date\":\"2024-02-18 15:44:30\",\"user_id\":0}}",
+                            "name": ""
+                        }
+                    ]
+                },
+                {
+                    "name": "PUT api\/bookings\/{id}",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/bookings\/:id",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/bookings\/:id",
+                            "variable": [
+                                {
+                                    "id": "id",
+                                    "key": "id",
+                                    "value": "31",
+                                    "description": "The ID of the booking."
+                                }
+                            ]
+                        },
+                        "method": "PUT",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\"start_date\":\"voluptas\",\"end_date\":\"porro\",\"room_id\":\"dignissimos\"}"
+                        },
+                        "description": "",
+                        "auth": {
+                            "type": "noauth"
+                        }
+                    },
+                    "response": []
+                },
+                {
+                    "name": "DELETE api\/bookings\/{id}",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/bookings\/:id",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/bookings\/:id",
+                            "variable": [
+                                {
+                                    "id": "id",
+                                    "key": "id",
+                                    "value": "31",
+                                    "description": "The ID of the booking."
+                                }
+                            ]
+                        },
+                        "method": "DELETE",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": null,
+                        "description": "",
+                        "auth": {
+                            "type": "noauth"
+                        }
+                    },
+                    "response": []
+                },
+                {
+                    "name": "GET api\/rooms",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/rooms",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/rooms"
+                        },
+                        "method": "GET",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": null,
+                        "description": "",
+                        "auth": {
+                            "type": "noauth"
+                        }
+                    },
+                    "response": [
+                        {
+                            "header": [
+                                {
+                                    "key": "cache-control",
+                                    "value": "no-cache, private"
+                                },
+                                {
+                                    "key": "content-type",
+                                    "value": "application\/json"
+                                },
+                                {
+                                    "key": "x-ratelimit-limit",
+                                    "value": "60"
+                                },
+                                {
+                                    "key": "x-ratelimit-remaining",
+                                    "value": "51"
+                                },
+                                {
+                                    "key": "access-control-allow-origin",
+                                    "value": "http:\/\/localhost:3000"
+                                }
+                            ],
+                            "code": 200,
+                            "body": "{\"data\":[{\"id\":1,\"room_number\":\"043\",\"number_of_beds\":3,\"hotel_id\":8},{\"id\":2,\"room_number\":\"548\",\"number_of_beds\":1,\"hotel_id\":4},{\"id\":3,\"room_number\":\"654\",\"number_of_beds\":4,\"hotel_id\":2},{\"id\":4,\"room_number\":\"906\",\"number_of_beds\":3,\"hotel_id\":6},{\"id\":5,\"room_number\":\"117\",\"number_of_beds\":3,\"hotel_id\":8},{\"id\":6,\"room_number\":\"930\",\"number_of_beds\":3,\"hotel_id\":11},{\"id\":7,\"room_number\":\"340\",\"number_of_beds\":1,\"hotel_id\":7},{\"id\":8,\"room_number\":\"873\",\"number_of_beds\":4,\"hotel_id\":1},{\"id\":9,\"room_number\":\"489\",\"number_of_beds\":3,\"hotel_id\":6},{\"id\":10,\"room_number\":\"437\",\"number_of_beds\":1,\"hotel_id\":2},{\"id\":11,\"room_number\":\"342\",\"number_of_beds\":3,\"hotel_id\":10},{\"id\":12,\"room_number\":\"801\",\"number_of_beds\":3,\"hotel_id\":11},{\"id\":14,\"room_number\":\"932\",\"number_of_beds\":3,\"hotel_id\":13},{\"id\":15,\"room_number\":\"765\",\"number_of_beds\":3,\"hotel_id\":14},{\"id\":16,\"room_number\":\"277\",\"number_of_beds\":3,\"hotel_id\":15},{\"id\":17,\"room_number\":\"192\",\"number_of_beds\":3,\"hotel_id\":16},{\"id\":18,\"room_number\":\"667\",\"number_of_beds\":3,\"hotel_id\":17},{\"id\":19,\"room_number\":\"741\",\"number_of_beds\":3,\"hotel_id\":18},{\"id\":20,\"room_number\":\"180\",\"number_of_beds\":3,\"hotel_id\":19},{\"id\":21,\"room_number\":\"226\",\"number_of_beds\":3,\"hotel_id\":20},{\"id\":23,\"room_number\":\"642\",\"number_of_beds\":3,\"hotel_id\":22}]}",
+                            "name": ""
+                        }
+                    ]
+                },
+                {
+                    "name": "POST api\/rooms",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/rooms",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/rooms"
+                        },
+                        "method": "POST",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\"room_number\":101,\"number_of_beds\":1,\"hotel_id\":\"sed\"}"
+                        },
+                        "description": "",
+                        "auth": {
+                            "type": "noauth"
+                        }
+                    },
+                    "response": []
+                },
+                {
+                    "name": "GET api\/rooms\/{id}",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/rooms\/:id",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/rooms\/:id",
+                            "variable": [
+                                {
+                                    "id": "id",
+                                    "key": "id",
+                                    "value": "1",
+                                    "description": "The ID of the room."
+                                }
+                            ]
+                        },
+                        "method": "GET",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": null,
+                        "description": "",
+                        "auth": {
+                            "type": "noauth"
+                        }
+                    },
+                    "response": [
+                        {
+                            "header": [
+                                {
+                                    "key": "cache-control",
+                                    "value": "no-cache, private"
+                                },
+                                {
+                                    "key": "content-type",
+                                    "value": "application\/json"
+                                },
+                                {
+                                    "key": "x-ratelimit-limit",
+                                    "value": "60"
+                                },
+                                {
+                                    "key": "x-ratelimit-remaining",
+                                    "value": "50"
+                                },
+                                {
+                                    "key": "access-control-allow-origin",
+                                    "value": "http:\/\/localhost:3000"
+                                }
+                            ],
+                            "code": 200,
+                            "body": "{\"room\":{\"id\":1,\"room_number\":\"043\",\"number_of_beds\":3,\"hotel_id\":8}}",
+                            "name": ""
+                        }
+                    ]
+                },
+                {
+                    "name": "PUT api\/rooms\/{id}",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/rooms\/:id",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/rooms\/:id",
+                            "variable": [
+                                {
+                                    "id": "id",
+                                    "key": "id",
+                                    "value": "1",
+                                    "description": "The ID of the room."
+                                }
+                            ]
+                        },
+                        "method": "PUT",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\"room_number\":101,\"number_of_beds\":1,\"hotel_id\":\"eius\"}"
+                        },
+                        "description": "",
+                        "auth": {
+                            "type": "noauth"
+                        }
+                    },
+                    "response": []
+                },
+                {
+                    "name": "DELETE api\/rooms\/{id}",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/rooms\/:id",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/rooms\/:id",
+                            "variable": [
+                                {
+                                    "id": "id",
+                                    "key": "id",
+                                    "value": "1",
+                                    "description": "The ID of the room."
+                                }
+                            ]
+                        },
+                        "method": "DELETE",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": null,
+                        "description": "",
+                        "auth": {
+                            "type": "noauth"
+                        }
+                    },
+                    "response": []
+                },
+                {
+                    "name": "POST api\/register",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/register",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/register"
+                        },
+                        "method": "POST",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\"name\":\"nkjsgbrqhr\",\"email\":\"abbey.schmidt@example.org\",\"password\":\"\\\"Z9)KU<#'2_\"}"
+                        },
+                        "description": "",
+                        "auth": {
+                            "type": "noauth"
+                        }
+                    },
+                    "response": []
+                },
+                {
+                    "name": "POST api\/login",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/login",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/login"
+                        },
+                        "method": "POST",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": null,
+                        "description": "",
+                        "auth": {
+                            "type": "noauth"
+                        }
+                    },
+                    "response": []
+                },
+                {
+                    "name": "GET api\/bookings\/user\/{userId}",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/bookings\/user\/:userId",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/bookings\/user\/:userId",
+                            "variable": [
+                                {
+                                    "id": "userId",
+                                    "key": "userId",
+                                    "value": "1",
+                                    "description": ""
+                                }
+                            ]
+                        },
+                        "method": "GET",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": null,
+                        "description": "",
+                        "auth": {
+                            "type": "noauth"
+                        }
+                    },
+                    "response": [
+                        {
+                            "header": [
+                                {
+                                    "key": "cache-control",
+                                    "value": "no-cache, private"
+                                },
+                                {
+                                    "key": "content-type",
+                                    "value": "application\/json"
+                                },
+                                {
+                                    "key": "x-ratelimit-limit",
+                                    "value": "60"
+                                },
+                                {
+                                    "key": "x-ratelimit-remaining",
+                                    "value": "49"
+                                },
+                                {
+                                    "key": "access-control-allow-origin",
+                                    "value": "http:\/\/localhost:3000"
+                                }
+                            ],
+                            "code": 200,
+                            "body": "{\"data\":[]}",
+                            "name": ""
+                        }
+                    ]
+                },
+                {
+                    "name": "GET api\/hotels\/owner\/{userId}",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/hotels\/owner\/:userId",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/hotels\/owner\/:userId",
+                            "variable": [
+                                {
+                                    "id": "userId",
+                                    "key": "userId",
+                                    "value": "at",
+                                    "description": ""
+                                }
+                            ]
+                        },
+                        "method": "GET",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": null,
+                        "description": "",
+                        "auth": {
+                            "type": "noauth"
+                        }
+                    },
+                    "response": [
+                        {
+                            "header": [
+                                {
+                                    "key": "cache-control",
+                                    "value": "no-cache, private"
+                                },
+                                {
+                                    "key": "content-type",
+                                    "value": "application\/json"
+                                },
+                                {
+                                    "key": "x-ratelimit-limit",
+                                    "value": "60"
+                                },
+                                {
+                                    "key": "x-ratelimit-remaining",
+                                    "value": "48"
+                                },
+                                {
+                                    "key": "access-control-allow-origin",
+                                    "value": "http:\/\/localhost:3000"
+                                }
+                            ],
+                            "code": 200,
+                            "body": "{\"data\":[{\"id\":1,\"name\":\"Murphy and Sons\",\"stars\":2,\"destination\":{\"id\":1,\"name\":\"Pozarevacc\",\"created_at\":null,\"updated_at\":\"2024-01-08T23:13:53.000000Z\",\"country_id\":1},\"rooms\":[{\"id\":8,\"room_number\":\"873\",\"number_of_beds\":4,\"hotel_id\":1,\"created_at\":\"2024-01-08T19:20:16.000000Z\",\"updated_at\":\"2024-01-08T19:20:16.000000Z\",\"price\":\"14\"}],\"user_id\":0},{\"id\":2,\"name\":\"Welch-Cronin\",\"stars\":2,\"destination\":{\"id\":3,\"name\":\"Novi Sad\",\"created_at\":null,\"updated_at\":null,\"country_id\":1},\"rooms\":[{\"id\":3,\"room_number\":\"654\",\"number_of_beds\":4,\"hotel_id\":2,\"created_at\":\"2024-01-08T19:20:16.000000Z\",\"updated_at\":\"2024-01-08T19:20:16.000000Z\",\"price\":\"8\"},{\"id\":10,\"room_number\":\"437\",\"number_of_beds\":1,\"hotel_id\":2,\"created_at\":\"2024-01-08T19:20:16.000000Z\",\"updated_at\":\"2024-01-08T19:20:16.000000Z\",\"price\":\"15\"}],\"user_id\":0},{\"id\":3,\"name\":\"Little Ltd\",\"stars\":4,\"destination\":{\"id\":4,\"name\":\"Beograd\",\"created_at\":\"2023-12-28T18:28:18.000000Z\",\"updated_at\":\"2023-12-28T18:28:18.000000Z\",\"country_id\":1},\"rooms\":[],\"user_id\":0},{\"id\":4,\"name\":\"Walker PLC\",\"stars\":4,\"destination\":{\"id\":2,\"name\":\"Herceg Novi\",\"created_at\":null,\"updated_at\":null,\"country_id\":2},\"rooms\":[{\"id\":2,\"room_number\":\"548\",\"number_of_beds\":1,\"hotel_id\":4,\"created_at\":\"2024-01-08T19:20:16.000000Z\",\"updated_at\":\"2024-01-08T19:20:16.000000Z\",\"price\":\"15\"}],\"user_id\":0},{\"id\":5,\"name\":\"Lubowitz-Keebler\",\"stars\":1,\"destination\":{\"id\":1,\"name\":\"Pozarevacc\",\"created_at\":null,\"updated_at\":\"2024-01-08T23:13:53.000000Z\",\"country_id\":1},\"rooms\":[],\"user_id\":0},{\"id\":7,\"name\":\"Nitzsche, Carroll and Kuphal\",\"stars\":3,\"destination\":{\"id\":3,\"name\":\"Novi Sad\",\"created_at\":null,\"updated_at\":null,\"country_id\":1},\"rooms\":[{\"id\":7,\"room_number\":\"340\",\"number_of_beds\":1,\"hotel_id\":7,\"created_at\":\"2024-01-08T19:20:16.000000Z\",\"updated_at\":\"2024-01-08T19:20:16.000000Z\",\"price\":\"22\"}],\"user_id\":0},{\"id\":11,\"name\":\"Hotel Moskva\",\"stars\":4,\"destination\":{\"id\":4,\"name\":\"Beograd\",\"created_at\":\"2023-12-28T18:28:18.000000Z\",\"updated_at\":\"2023-12-28T18:28:18.000000Z\",\"country_id\":1},\"rooms\":[{\"id\":6,\"room_number\":\"930\",\"number_of_beds\":3,\"hotel_id\":11,\"created_at\":\"2024-01-08T19:20:16.000000Z\",\"updated_at\":\"2024-01-08T19:20:16.000000Z\",\"price\":\"15\"},{\"id\":12,\"room_number\":\"801\",\"number_of_beds\":3,\"hotel_id\":11,\"created_at\":\"2024-01-08T20:36:50.000000Z\",\"updated_at\":\"2024-01-08T20:36:50.000000Z\",\"price\":\"13\"}],\"user_id\":0},{\"id\":14,\"name\":\"Williamson-Corkery\",\"stars\":5,\"destination\":{\"id\":4,\"name\":\"Beograd\",\"created_at\":\"2023-12-28T18:28:18.000000Z\",\"updated_at\":\"2023-12-28T18:28:18.000000Z\",\"country_id\":1},\"rooms\":[{\"id\":15,\"room_number\":\"765\",\"number_of_beds\":3,\"hotel_id\":14,\"created_at\":\"2024-01-08T20:38:59.000000Z\",\"updated_at\":\"2024-01-08T20:38:59.000000Z\",\"price\":\"12\"}],\"user_id\":0},{\"id\":15,\"name\":\"Douglas-Jaskolski\",\"stars\":1,\"destination\":{\"id\":4,\"name\":\"Beograd\",\"created_at\":\"2023-12-28T18:28:18.000000Z\",\"updated_at\":\"2023-12-28T18:28:18.000000Z\",\"country_id\":1},\"rooms\":[{\"id\":16,\"room_number\":\"277\",\"number_of_beds\":3,\"hotel_id\":15,\"created_at\":\"2024-01-08T20:38:59.000000Z\",\"updated_at\":\"2024-01-08T20:38:59.000000Z\",\"price\":\"12\"}],\"user_id\":0},{\"id\":16,\"name\":\"Stokes Inc\",\"stars\":4,\"destination\":{\"id\":4,\"name\":\"Beograd\",\"created_at\":\"2023-12-28T18:28:18.000000Z\",\"updated_at\":\"2023-12-28T18:28:18.000000Z\",\"country_id\":1},\"rooms\":[{\"id\":17,\"room_number\":\"192\",\"number_of_beds\":3,\"hotel_id\":16,\"created_at\":\"2024-01-08T20:38:59.000000Z\",\"updated_at\":\"2024-01-08T20:38:59.000000Z\",\"price\":\"15\"}],\"user_id\":0}],\"links\":{\"first\":\"http:\\\/\\\/localhost\\\/api\\\/hotels\\\/owner\\\/at?page=1\",\"last\":\"http:\\\/\\\/localhost\\\/api\\\/hotels\\\/owner\\\/at?page=2\",\"prev\":null,\"next\":\"http:\\\/\\\/localhost\\\/api\\\/hotels\\\/owner\\\/at?page=2\"},\"meta\":{\"current_page\":1,\"from\":1,\"last_page\":2,\"links\":[{\"url\":null,\"label\":\"&laquo; Previous\",\"active\":false},{\"url\":\"http:\\\/\\\/localhost\\\/api\\\/hotels\\\/owner\\\/at?page=1\",\"label\":\"1\",\"active\":true},{\"url\":\"http:\\\/\\\/localhost\\\/api\\\/hotels\\\/owner\\\/at?page=2\",\"label\":\"2\",\"active\":false},{\"url\":\"http:\\\/\\\/localhost\\\/api\\\/hotels\\\/owner\\\/at?page=2\",\"label\":\"Next &raquo;\",\"active\":false}],\"path\":\"http:\\\/\\\/localhost\\\/api\\\/hotels\\\/owner\\\/at\",\"per_page\":10,\"to\":10,\"total\":15}}",
+                            "name": ""
+                        }
+                    ]
+                },
+                {
+                    "name": "GET api\/profile",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/profile",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/profile"
+                        },
+                        "method": "GET",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": null,
+                        "description": "",
+                        "auth": {
+                            "type": "noauth"
+                        }
+                    },
+                    "response": [
+                        {
+                            "header": [
+                                {
+                                    "key": "cache-control",
+                                    "value": "no-cache, private"
+                                },
+                                {
+                                    "key": "content-type",
+                                    "value": "application\/json"
+                                },
+                                {
+                                    "key": "access-control-allow-origin",
+                                    "value": "http:\/\/localhost:3000"
+                                }
+                            ],
+                            "code": 401,
+                            "body": "{\"message\":\"Unauthenticated.\"}",
+                            "name": ""
+                        }
+                    ]
+                },
+                {
+                    "name": "POST api\/logout",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/logout",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/logout"
+                        },
+                        "method": "POST",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": null,
+                        "description": "",
+                        "auth": {
+                            "type": "noauth"
+                        }
+                    },
+                    "response": []
+                },
+                {
+                    "name": "GET api\/countries",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/countries",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/countries"
+                        },
+                        "method": "GET",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": null,
+                        "description": "",
+                        "auth": {
+                            "type": "noauth"
+                        }
+                    },
+                    "response": [
+                        {
+                            "header": [
+                                {
+                                    "key": "cache-control",
+                                    "value": "no-cache, private"
+                                },
+                                {
+                                    "key": "content-type",
+                                    "value": "application\/json"
+                                },
+                                {
+                                    "key": "access-control-allow-origin",
+                                    "value": "http:\/\/localhost:3000"
+                                },
+                                {
+                                    "key": "set-cookie",
+                                    "value": "XSRF-TOKEN=eyJpdiI6ImxVakJUSEtlNlN6empmdUVLQmRpVGc9PSIsInZhbHVlIjoicWlLRDhQeWU0YVN5WGVnZHhvNXVrUUkzV1BuUFE2OG1sSnpxRkIzVUdUcGdwY0FsV3VYU3YzZ0tSNmFzTVZqMTJmZ2lVdnM1L3RYYmhuUGRaU0lBZnhWMS9tZnNtZHJkRFlMaHFqak9RMkdpS0YvZHFPQmNmVmg0YkV3YnJWejYiLCJtYWMiOiI5YzAzY2NmNWI5N2U3M2NjNzcwZjBmMjExZGJmNTVlZjEwNTEzZDRmOWYxYzY3ZDk4NjhhNGM2NmI0YTFmNjgwIiwidGFnIjoiIn0%3D; expires=Fri, 09-Feb-2024 04:36:34 GMT; Max-Age=7200; path=\/; samesite=lax; laravel_session=eyJpdiI6Im1OQ3lBK0NHZmVnZXUzZTJUMGwralE9PSIsInZhbHVlIjoiVVgwV2NhTmRLdjJPUkwrM1g4bkNHWmpTRGhQRERWVmRDUUpkV2hURXA1ektTYTRFcDMzV0J2V2NxK3VMbU1BNHNsbE4vSGZNNEd4UXFXNkwvQjYvMDQ1VHlIaExVcXJaRFVQMnphbGFTMmh3L1k5R3hVRFRnRk5RRHZjY2RwTW4iLCJtYWMiOiJmMjRkMmExYWRhYjdlOTM4NzhiOTJmMzBkYjJlYmU1Y2Q3OGJhNzQ2N2M5YmQ4ZGYwYTM1MGM5MTAxYTc4NGQ3IiwidGFnIjoiIn0%3D; expires=Fri, 09-Feb-2024 04:36:34 GMT; Max-Age=7200; path=\/; httponly; samesite=lax"
+                                }
+                            ],
+                            "code": 200,
+                            "body": "[{\"id\":1,\"name\":\"Serbiaa\",\"created_at\":\"2023-12-27T16:40:46.000000Z\",\"updated_at\":\"2024-01-09T00:30:27.000000Z\",\"country_code\":\"+381\"},{\"id\":2,\"name\":\"Montenegro\",\"created_at\":\"2023-12-27T16:40:46.000000Z\",\"updated_at\":\"2023-12-27T16:40:46.000000Z\",\"country_code\":\"+382\"},{\"id\":3,\"name\":\"Greece\",\"created_at\":\"2023-12-27T16:40:46.000000Z\",\"updated_at\":\"2023-12-27T16:40:46.000000Z\",\"country_code\":\"+30\"},{\"id\":4,\"name\":\"Italy\",\"created_at\":\"2023-12-27T16:40:46.000000Z\",\"updated_at\":\"2023-12-27T16:40:46.000000Z\",\"country_code\":\"+39\"}]",
+                            "name": ""
+                        }
+                    ]
+                },
+                {
+                    "name": "POST api\/countries",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/countries",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/countries"
+                        },
+                        "method": "POST",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\"name\":\"at\",\"country_code\":\"voluptate\"}"
+                        },
+                        "description": "",
+                        "auth": {
+                            "type": "noauth"
+                        }
+                    },
+                    "response": []
+                },
+                {
+                    "name": "PUT api\/countries\/{country_id}",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/countries\/:country_id",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/countries\/:country_id",
+                            "variable": [
+                                {
+                                    "id": "country_id",
+                                    "key": "country_id",
+                                    "value": "1",
+                                    "description": "The ID of the country."
+                                }
+                            ]
+                        },
+                        "method": "PUT",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\"name\":\"ut\",\"country_code\":\"perspiciatis\"}"
+                        },
+                        "description": "",
+                        "auth": {
+                            "type": "noauth"
+                        }
+                    },
+                    "response": []
+                },
+                {
+                    "name": "DELETE api\/countries\/{country_id}",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/countries\/:country_id",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/countries\/:country_id",
+                            "variable": [
+                                {
+                                    "id": "country_id",
+                                    "key": "country_id",
+                                    "value": "1",
+                                    "description": "The ID of the country."
+                                }
+                            ]
+                        },
+                        "method": "DELETE",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": null,
+                        "description": "",
+                        "auth": {
+                            "type": "noauth"
+                        }
+                    },
+                    "response": []
+                }
+            ]
+        }
+    ],
+    "auth": {
+        "type": "noauth"
+    }
+}
