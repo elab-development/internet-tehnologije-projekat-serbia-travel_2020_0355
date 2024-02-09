@@ -2,6 +2,10 @@ import React, { useState, useEffect } from "react";
 import styled from "styled-components";
 import paris from "../assets/paris.png";
 import japan from "../assets/japan.png";
+import london from "../assets/london.jpg";
+import amsterdam from "../assets/amsterdam.png";
+import dubai from "../assets/dubai.png";
+import istanbul from "../assets/istanbul.png";
 import Button from "./Button";
 import Destination from "./Destination";
 
@@ -14,26 +18,26 @@ export default function Destinations() {
     },
     {
       name: "London",
-      image: paris,
+      image: london,
     },
     {
       name: "Amsterdam",
-      image: paris,
+      image: amsterdam,
     },
   ];
 
   const asiaDestinations = [
     {
-      name: "Japan",
+      name: "Tokyo",
       image: japan,
     },
     {
-      name: "Bangkok",
-      image: japan,
+      name: "Dubai",
+      image: dubai,
     },
     {
-      name: "Singapore",
-      image: japan,
+      name: "Istanbul",
+      image: istanbul,
     },
   ];
 
