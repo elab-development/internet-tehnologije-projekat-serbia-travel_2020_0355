@@ -4,6 +4,7 @@ import styled from "styled-components";
 import { GiHamburgerMenu } from "react-icons/gi";
 import { MdClose } from "react-icons/md";
 import Logo from "../assets/logo.png";
+import axios from 'axios';
 
 export default function Navbar() {
   
@@ -16,12 +17,25 @@ export default function Navbar() {
   const html = document.querySelector("html");
   html.addEventListener("click", (e) => setIsNavOpen(false));
 
-  const handleLogout = () => {
-    localStorage.removeItem("token");
-    localStorage.removeItem("user");
-    localStorage.removeItem("userId");
-    localStorage.removeItem("role");
-    navigate("/login");
+  const handleLogout = () => {  
+    const config = {
+      headers: {
+        Authorization: `Bearer ${token}`
+      }
+    };
+  
+    axios.post('http://localhost:8000/api/logout', null, config)
+      .then(response => {
+        localStorage.removeItem('token');
+        localStorage.removeItem('user');
+        localStorage.removeItem('userId');
+        localStorage.removeItem('role');
+  
+        navigate('/login');
+      })
+      .catch(error => {
+        console.error('Logout failed:', error);
+      });
   };
 
   return (
