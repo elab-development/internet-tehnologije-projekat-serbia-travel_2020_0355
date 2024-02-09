@@ -2,7 +2,9 @@ import React from "react";
 import styled from "styled-components";
 import { BsFillStarFill } from "react-icons/bs";
 
-const Card = ({ image, title, price, reviews, index }) => {
+const Card = ({ image, title, stars, reviews, index, onClick }) => {
+  const starArray = Array.from({ length: stars }, (_, index) => index + 1);
+
   return (
     <StyledCard key={title} index={index}>
       <div className="image">
@@ -12,20 +14,17 @@ const Card = ({ image, title, price, reviews, index }) => {
         <div className="details">
           <h4>{title}</h4>
           <div className="price-details">
-            <span className="price">${price}</span>
             <div className="reviews">
               <div className="stars">
-                <BsFillStarFill />
-                <BsFillStarFill />
-                <BsFillStarFill />
-                <BsFillStarFill />
-                <BsFillStarFill />
+                {starArray.map((_, index) => (
+                  <BsFillStarFill key={index} />
+                ))}
               </div>
               <span className="review">{reviews}</span>
             </div>
           </div>
         </div>
-        <button>+</button>
+        <button onClick={onClick}>+</button>
       </div>
     </StyledCard>
   );
@@ -52,6 +51,7 @@ const StyledCard = styled.div`
     box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
     transform: translateY(-40%);
     button {
+      margin-left: auto;
       padding: 0.5rem 0.7rem;
       background-color: var(--primary-color);
       border: none;

@@ -1,14 +1,28 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 import { GiHamburgerMenu } from "react-icons/gi";
 import { MdClose } from "react-icons/md";
 import Logo from "../assets/logo.png";
+
 export default function Navbar() {
   const [isNavOpen, setIsNavOpen] = useState(false);
   const navigate = useNavigate();
+  const token = localStorage.getItem("token");
+  const user = localStorage.getItem("user");
+  const userId = localStorage.getItem("userId");
+  const role = localStorage.getItem("role");
   const html = document.querySelector("html");
   html.addEventListener("click", (e) => setIsNavOpen(false));
+
+  const handleLogout = () => {
+    localStorage.removeItem("token");
+    localStorage.removeItem("user");
+    localStorage.removeItem("userId");
+    localStorage.removeItem("role");
+    navigate("/login");
+  };
+
   return (
     <Container state={isNavOpen ? 1 : 0}>
       <div className="brand">
@@ -35,7 +49,6 @@ export default function Navbar() {
           </li>
           <li>
             <a onClick={() => navigate("/")} href="#destination">
-              {" "}
               Destination
             </a>
           </li>
@@ -54,8 +67,29 @@ export default function Navbar() {
               Customers
             </a>
           </li>
-          <li className="download">
-            <a onClick={() => navigate("/download")}>Download App</a>
+          <li className="find-us">
+            <a onClick={() => navigate("/find-us")}>Find Us</a>
+          </li>
+          <li className="user">
+            {user ? (
+              <>
+                <span>{user}</span>
+                <ul className="dropdown">
+                  {role === 'user' && (
+                  <li>
+                    <a onClick={() => navigate("/bookings")}>
+                      Bookings
+                    </a>
+                  </li>
+                  )}
+                  <li>
+                    <a onClick={handleLogout}>Logout</a>
+                  </li>
+                </ul>
+              </>
+            ) : (
+              <a onClick={() => navigate("/login")}>Login</a>
+            )}
           </li>
         </ul>
       </div>
@@ -91,6 +125,38 @@ const Container = styled.nav`
           }
         }
       }
+    }
+  }
+
+  .user {
+    position: relative;
+    cursor: pointer;
+    span {
+      margin-right: 10px;
+    }
+    .dropdown {
+      position: absolute;
+      top: 100%;
+      right: 0;
+      background-color: #fff;
+      border: 1px solid #ccc;
+      padding: 5px 0;
+      z-index: 10;
+      display: none;
+      li {
+        a {
+          display: block;
+          padding: 10px 20px;
+          color: black;
+          text-decoration: none;
+          &:hover {
+            background-color: #f0f0f0;
+          }
+        }
+      }
+    }
+    &:hover .dropdown {
+      display: block;
     }
   }
 
