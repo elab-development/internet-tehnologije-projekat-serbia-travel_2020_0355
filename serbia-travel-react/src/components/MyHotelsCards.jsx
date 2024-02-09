@@ -60,6 +60,7 @@ const MyHotelsCards = () => {
                 key={hotel.id}
                 image={tour1}
                 title={hotel.name}
+                stars={hotel.stars}
                 index={hotel.id}
                 onClick={() => handleCardClick(hotel)}
               />
