@@ -7,6 +7,7 @@ import LoginSignup from "./components/LoginSignup";
 import FindUs from "./components/FindUs";
 import Bookings from "./components/Bookings";
 import MyHotels from "./components/MyHotels";
+import NewDestination from "./components/NewDestination";
 
 export default function Router() {
   return (
@@ -18,6 +19,7 @@ export default function Router() {
         <Route path="/find-us" element={<FindUs />} />
         <Route path="/login" element={<LoginSignup />} />
         <Route path="/bookings" element={<Bookings />} />
+        <Route path="/new-destination" element={<NewDestination />} />
       </Routes>
     </BrowserRouter>
   );

@@ -44,10 +44,15 @@ export default function Home() {
         <img src={HeroImage} alt="Hero" />
       </div>
       <div className="content">
-        {userRole === "hotel_owner" ? (
+      {userRole === "hotel_owner" ? (
           <div className="info">
             <h1>Welcome {userName}</h1>
             <Button text="Your Hotels" onClick={() => navigate("/my-hotels")} />
+          </div>
+        ) : userRole === "admin" ? (
+          <div className="info">
+            <h1>Welcome {userName}</h1>
+            <Button text="Add a Destination" onClick={() => navigate("/new-destination")} />
           </div>
         ) : (
           <div className="info">
@@ -56,7 +61,7 @@ export default function Home() {
             <Button text="Plan Your Trip" />
           </div>
         )}
-        {userRole !== "hotel_owner" && (
+        {userRole !== "hotel_owner" && userRole !== "admin" && (
           <div className="planner">
             <form>
               <div className="row">
