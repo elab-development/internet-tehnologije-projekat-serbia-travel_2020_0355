@@ -96,7 +96,7 @@ class BookingController extends Controller
 
         $pdf = PDF::loadView('booking.pdf', ['bookings' => $bookings]);
 
-        return $pdf->download('bookings.pdf');
+        return $pdf->download('bookings.pdf')->header('Access-Control-Allow-Origin', 'http://localhost:3000');
     }
 
     public function getUserBookings($userId)
