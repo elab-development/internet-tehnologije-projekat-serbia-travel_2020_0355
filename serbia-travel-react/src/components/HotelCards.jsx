@@ -103,7 +103,8 @@ const HotelCards = ({ formParams }) => {
         </label>
       </FilterContainer>
       <HotelCardsContainer>
-        <CardContainer>
+        {hotels && hotels.length > 0 ? (
+          <><CardContainer>
           {hotels &&
             hotels.map((hotel) => (
               <Card
@@ -130,7 +131,10 @@ const HotelCards = ({ formParams }) => {
           >
             Next
           </PaginationButton>
-        </Pagination>
+        </Pagination></>
+        ) : (
+          <NoHotelsMessage>No hotels available for the chosen input.</NoHotelsMessage>
+        )}
       </HotelCardsContainer>
       {selectedHotel && (
         <HotelModal
@@ -219,5 +223,12 @@ const PageNumber = styled.span`
   background-color: #f0f0f0;
   border-radius: 5px;
 `;
+
+const NoHotelsMessage = styled.div`
+  text-align: center;
+  font-size: 18px;
+  margin-top: 20px;
+`;
+
 
 export default HotelCards;
