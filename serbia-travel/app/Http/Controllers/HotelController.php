@@ -84,12 +84,14 @@ class HotelController extends Controller
             'name' => 'required|string|max:255',
             'stars' => 'required|numeric|between:1,5',
             'destination_id' => 'required|exists:destinations,id',
+            'user_id' => 'required|exists:users,id'
         ]);
 
         $hotel = new Hotel();
         $hotel->name = $validatedData['name'];
         $hotel->stars = $validatedData['stars'];
         $hotel->destination_id = $validatedData['destination_id'];
+        $hotel->user_id = $validatedData['user_id'];
 
         $hotel->save();
 
@@ -101,7 +103,7 @@ class HotelController extends Controller
         $validatedData = $request->validate([
             'name' => 'required|string|max:255',
             'stars' => 'required|numeric|between:1,5',
-            'destination_id' => 'required|exists:destinations,id',
+            'destination_id' => 'required|exists:destinations,id'
         ]);
 
         $hotel->name = $validatedData['name'];
