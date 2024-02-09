@@ -1,13 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import styled from 'styled-components';
-import email_icon from '../assets/email.png';
-import password_icon from '../assets/password.png';
 import Logo from '../assets/logo.png';
 import Button from './Button';
 import { useNavigate } from 'react-router-dom';
 
 export default function NewDestination() {
+  
   const [countries, setCountries] = useState([]);
   const [selectedCountry, setSelectedCountry] = useState('');
   const [destinationName, setDestinationName] = useState('');

@@ -3,6 +3,7 @@ import styled from "styled-components";
 import googlePlay from "../assets/googlePlay.png";
 import appStore from "../assets/appleStore.png";
 import screens from "../assets/screens.png";
+
 export default function DownloadApp() {
   return (
     <Section>

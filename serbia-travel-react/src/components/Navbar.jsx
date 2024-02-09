@@ -6,6 +6,7 @@ import { MdClose } from "react-icons/md";
 import Logo from "../assets/logo.png";
 
 export default function Navbar() {
+  
   const [isNavOpen, setIsNavOpen] = useState(false);
   const navigate = useNavigate();
   const token = localStorage.getItem("token");
