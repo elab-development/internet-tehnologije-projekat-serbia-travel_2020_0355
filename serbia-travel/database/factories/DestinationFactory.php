@@ -9,15 +9,11 @@ use Illuminate\Database\Eloquent\Factories\Factory;
  */
 class DestinationFactory extends Factory
 {
-    /**
-     * Define the model's default state.
-     *
-     * @return array<string, mixed>
-     */
     public function definition()
     {
         return [
-            //
+            'name' => $this->faker->city,
+            'country_id' => null,
         ];
     }
 }

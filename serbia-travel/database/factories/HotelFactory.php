@@ -20,9 +20,6 @@ class HotelFactory extends Factory
         return [
             'name' => $this->faker->company,
             'stars' => $this->faker->numberBetween(1, 5),
-            'destination_id' => function () {
-                return Destination::inRandomOrder()->first()->id;
-            }
         ];
     }
 }
