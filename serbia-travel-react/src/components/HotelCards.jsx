@@ -126,7 +126,7 @@ const HotelCards = ({ formParams }) => {
           <PageNumber>{pageNumber}</PageNumber>
           <PaginationButton
             onClick={() => changePageNumber(pageNumber + 1)}
-            disabled={!hotels || hotels.length <= hotelsPerPage}
+            disabled={!hotels || hotels.length < hotelsPerPage}
           >
             Next
           </PaginationButton>
