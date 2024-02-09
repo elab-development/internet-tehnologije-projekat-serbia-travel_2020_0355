@@ -31,7 +31,7 @@ const HotelModal = ({ hotelName, rooms, onClose, startDate, endDate }) => {
               }
             });
             console.log('Booking successful:', response.data);
-            setStatus({ type: 'error', message: "Room booked successfully!"});
+            setStatus({ type: 'success', message: "Room booked successfully!"});
             setTimeout(() => onClose(), 2500);
           } catch (error) {
             console.error('Error booking room:', error);
