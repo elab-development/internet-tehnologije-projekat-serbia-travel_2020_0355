@@ -110,8 +110,7 @@ const HotelCards = ({ formParams }) => {
                 key={hotel.id}
                 image={tour1}
                 title={hotel.name}
-                price={200}
-                reviews={"7k"}
+                stars={hotel.stars}
                 index={hotel.id}
                 onClick={() => handleCardClick(hotel)}
               />
